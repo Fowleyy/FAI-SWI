@@ -1,16 +1,7 @@
 #include <stdio.h>
-
-int faktorial(int n) {
-    if (n <= 1) {
-        return 1;
-    } else {
-        return n * faktorial(n - 1);
-    }
-}
+#include "..\lib\mymath.h"
 
 int main() {
-    int a = 5;
-    printf("%d", faktorial(a));
-    
+    printf("%2.f", fibo(7));
     return 0;
 }
