@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "take.h": "c",
+        "stdio.h": "c"
+    }
+}
