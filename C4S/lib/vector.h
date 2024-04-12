@@ -86,10 +86,6 @@ Vector *vector_sort(Vector *vector, int ascending) {
     return sorted_vector;
 }
 
-
-
-
-
 void Vector_Print(Vector* vector) {
     for (int i = 0; i < vector->size; i++) {
         printf("%d ", vector->data[i]);

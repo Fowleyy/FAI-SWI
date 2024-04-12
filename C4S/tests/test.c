@@ -23,5 +23,6 @@ int main() {
     ok(vector->data[0] == 3 && vector->data[1] == 1, "Test - descending");
 
     done_testing();
+    free(vector);
     return 0;
 }
