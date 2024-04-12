@@ -57,24 +57,31 @@ Vector* Vector_delete_at(Vector* old_vector, int p) {
 }
 
 
-int compare_asc(const void *a, const void *b) {
-  return *(int *)a - *(int *)b;
-}
-
-int compare_desc(const void *a, const void *b) {
-  return *(int *)b - *(int *)a;
-}
-
-
 Vector *vector_sort(Vector *vector, int ascending) {
     Vector *sorted_vector = Vector_create();
     memcpy(sorted_vector->data, vector->data, sizeof(int) * vector->size);
     sorted_vector->size = vector->size;
 
-    if (ascending)
-        qsort(sorted_vector->data, sorted_vector->size, sizeof(int), compare_asc);
-    else
-        qsort(sorted_vector->data, sorted_vector->size, sizeof(int), compare_desc);
+    int i, j;
+    for (i = 0; i < sorted_vector->size - 1; i++) {
+        for (j = 0; j < sorted_vector->size - i - 1; j++) {
+            int *current = &sorted_vector->data[j];
+            int *next = &sorted_vector->data[j + 1];
+            if (ascending) {
+                if (*current > *next) {
+                    int temp = *current;
+                    *current = *next;
+                    *next = temp;
+                }
+            } else {
+                if (*current < *next) {
+                    int temp = *current;
+                    *current = *next;
+                    *next = temp;
+                }
+            }
+        }
+    }
 
     return sorted_vector;
 }
