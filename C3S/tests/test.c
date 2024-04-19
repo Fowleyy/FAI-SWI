@@ -17,12 +17,14 @@ int main(){
     kul1.data = 1;
     kul1.next = NULL;
 
-    
+    vypisSeznam(&kul4);
 
     int result = take_nth(&kul4, 2);
     printf("\n");
     ok(result == 2, "test funkce"); 
 
     done_testing();
+
+    
 
 }
