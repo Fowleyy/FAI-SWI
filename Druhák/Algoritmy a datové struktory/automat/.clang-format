@@ -1,0 +1,13 @@
+BasedOnStyle: Google
+IndentWidth: 2
+AlignTrailingComments: true
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: true
+AlignConsecutiveMacros: true
+---
+Language: Cpp
+ColumnLimit: 80
+Standard: Cpp11
+SortIncludes: true
+---

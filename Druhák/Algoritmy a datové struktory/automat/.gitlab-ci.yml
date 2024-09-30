@@ -1,0 +1,81 @@
+stages:
+    - build
+    - unitTests
+    - test
+
+variables:
+  PROJECT_NAME: "app"
+  BINARY_PATH: "bin"
+  TESTS_NAME: "tests"
+
+cache: &global_cache
+  key: assets
+  paths:
+    - $BINARY_PATH/test_files
+  policy: pull-push
+
+linux:
+  tags:
+    - seminars
+  stage: build
+  
+  script: 
+    - cmake CMakeLists.txt
+    - make
+
+  cache:
+    <<: *global_cache
+    policy: push
+
+    
+  artifacts:
+    paths:
+      - $BINARY_PATH/$PROJECT_NAME
+      - $BINARY_PATH/$TESTS_NAME
+    when: always
+
+
+unitTesting:
+  tags:
+    - seminars
+  stage: unitTests
+
+  variables:
+    UT_NAME: "unitTestOutput.txt"
+  
+  script:
+    - cd $BINARY_PATH
+    - ./$TESTS_NAME | tee $UT_NAME
+    - (! grep -q "FAILED TESTS" $UT_NAME)
+    
+  artifacts:
+    paths:
+      - $BINARY_PATH/$UT_NAME
+    when: always
+
+  cache:
+    <<: *global_cache
+    policy: pull
+      
+integrationTest1:
+  tags:
+    - seminars
+  stage: test
+  
+  script:
+    - cd $BINARY_PATH
+    - valgrind --log-file=valgrindOutput1.txt ./$PROJECT_NAME < test_files/input_allTypes.c | tee output1.txt
+    - diff output1.txt test_files/output_allTypes.c | tee diffOutput1.diff
+    - grep -q "no leaks are possible" valgrindOutput1.txt
+    - cmp output1.txt test_files/output_allTypes.c
+    
+  artifacts:
+    paths:
+      - $BINARY_PATH/output1.txt
+      - $BINARY_PATH/diffOutput1.diff
+      - $BINARY_PATH/valgrindOutput1.txt
+    when: always
+    
+  cache:
+    <<: *global_cache
+    policy: pull
