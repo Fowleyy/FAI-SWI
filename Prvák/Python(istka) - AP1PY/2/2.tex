@@ -1,0 +1,227 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    keywordstyle=\color{blue},
+    identifierstyle=\color{black},
+    commentstyle=\color{green},
+    stringstyle=\color{red},
+    numbers=left,
+    stepnumber=1,
+    tabsize=4,
+}
+
+
+\newcommand{\sectionbreak}{\clearpage}
+
+
+
+\title{Python}
+\author{Daniel Kubíček}
+\date{September 2023}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Co je to Python a jeho vlastnosti}
+\begin{itemize}
+\normalsize
+    \item Python je vysokoúrovňový programovací jazyk, který byl vyvinut Guido van Rossumem a poprvé uveden na trh v roce 1991. Jedná se o interpretovaný jazyk, což znamená, že kód může být spouštěn přímo bez předchozí kompilace. Python je známý svou jednoduchou a čitelnou syntaxí, což z něj činí oblíbený jazyk pro začínající programátory i profesionály.
+    \item Některé klíčové vlastnosti Pythonu zahrnují:
+     \item Čitelná syntaxe: Python používá odsazení (mezer nebo tabulátorů) k určení bloků kódu, což vede k čitelnému a konzistentnímu kódu.
+     \item Vysokoúrovňový jazyk: Python má zabudované datové typy a funkce, což usnadňuje práci s různými úkoly bez potřeby složitých manipulací s pamětí.
+     \item Multiplatformní: Python je dostupný na různých operačních systémech, což umožňuje psát kód, který běží na různých platformách.
+     \item Rozšiřitelnost: Python umožňuje integraci kódu napsaného v jiných jazycích, což umožňuje využít existující knihovny a rozšíření.
+     \item Velká komunita: Python má aktivní a rozsáhlou komunitu uživatelů a vývojářů, což znamená, že existuje mnoho knihoven a nástrojů pro různé účely.
+     \item Python se používá pro širokou škálu aplikací, včetně webových aplikací, automatizace úkolů, datové analýzy, strojového učení, umělé inteligence, vědeckého výzkumu a mnoho dalších oblastí. Je to jeden z nejpopulárnějších programovacích jazyků na světě a má silnou pozici v oblasti vývoje softwaru.
+    
+    \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.1\textwidth]{Python.png}
+    \caption{Logo Pythonu}
+    \end{figure}
+   
+\end{itemize}
+\section{Historie Pythonu}
+\begin{itemize}
+    \item Python byl vytvořen v roce 1990-1991 Guido van Rossumem v Matematickém centru Stitching v Nizozemsku jako následník jazyka nazývaného ABC. Jméno Python pochází z Monty Python's Flying Circus. Tvůrci tohoto zábavného pořadu tvrdí, že nemá žádný význam a jim akorát připadalo zábavné. Nemá oficiální logo, přestože na mnoha webech se objevuje had (přesněji krajta), což je jeden z anglických významů slova Python. Přesto oba tvůrci souvislosti s hady odmítají. Python jazyk se vyvíjí a postupem času vznikly tři nekompatibilní major verze. Verze Python 1, která byla vydána v roce 1991 a jejíž poslední aktualizace proběhla v roce 2000. Nyní se tedy již nepoužívá. Další verze Python 2, která byla vydána v roce 2000 a jejíž poslední verze byla vydána v roce 2020. Python 3, verze 3.0 byla vydána v roce 2008 a je nyní aktuální řadou.
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{guido.jpg}
+    \caption{Guido van Rossumem}
+    \end{figure}
+\begin{table}[htbp]
+\centering
+\caption{Tabulka vývojových milníků}
+\label{tab:python-history}
+\begin{tabular}{|c|p{7cm}|}
+\hline
+\textbf{Rok} & \textbf{Událost} \\
+\hline
+1989 &  Guido van Rossum začal vyvíjet Python v prosinci 1989. \\
+\hline
+1991 & První verze Pythonu 0.9.0. Tato verze obsahovala několik základních prvků, jako jsou blokové struktury a dynamické datové typy. \\
+\hline
+1994 & Python 1.0 byl vydán. Tato verze přinesla několik vylepšení a rozšíření, včetně mapování slovníku a modulu pro manipulaci s textovými řetězci. \\
+\hline
+2000 & Python 2.0, přinesl důležité změny a vylepšení, včetně podpory pro Unicode, list comprehensions a garbage collection. \\
+\hline
+2008 & Python 3.0, tato verze přinesla řadu zásadních změn, včetně sjednocení typů textu a bajtů, odstranění některých zastaralých funkcí a zlepšení syntaxe. \\
+\hline
+2010 & Python 2.7 byl vydán jako poslední verze série 2.x. Měl velkou bázi uživatelů a byl používán v mnoha projektech a aplikacích. \\
+\hline
+2015 & Python 3.5 přidal podporu pro await/async, nové operátory a typové kontroly. \\
+\hline
+2020 & Python 2.7 dosáhl konce životnosti a byl oficiálně ukončen. \\
+\hline
+2020 & Python 3.9 přinesl nové nástroje a zvýšil efektivitu vývoje v Pythonu. Umožnily programátorům psát čitelnější a efektivnější kód. \\
+\hline
+2023 & Aktuální datum - Python je stále populární a aktivně vyvíjen. \\
+\hline
+\end{tabular}
+\end{table}
+\section{Instalace Pythonu na Windows}
+\begin{itemize}
+    \item Běž na oficiální stránku pythonu \href{https://www.python.org/}{python.org}
+    \item klikni na v menu na Download
+    \item Stáhni si vhodný instalační balíček pro tvoji verzi windows (32bit/64bit).
+
+    \item Stažený balíček spusť.Na začátku instalace zaškrtni:
+            \textbf{Use admin privileges when installing py.exe} a také \textbf{add python.exe to PATH.} Tyto volby ti zjednoduší vytvoření virtuálního prostředí.
+    \item Pak zmáčkni \textbf{Install now} a dále se drž instrukcí.
+
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{install.png}
+    \caption{Instalační balíček pythonu}
+    \label{fig:enter-label}
+\end{figure}
+\section{Python Enhancement Proposal}
+\begin{itemize}
+    \item Python Enhancement Proposal (PEP) je návrh nebo dokument, který slouží k popisu nových funkcí, rozšíření nebo změn v programovacím jazyku Python. PEPy jsou způsobem, jakým komunita Pythonu diskutuje o nápadech, které by měly být začleněny do jazyka, a jakým způsobem se tyto nápady stávají součástí oficiálního Pythonu.
+
+    \item PEP 8 je jedním z Python Enhancement Proposal (PEP) dokumentů, který definuje oficiální směrnice pro styl psaní kódu v jazyce Python. Jeho název je "Style Guide for Python Code" a slouží k tomu, aby vývojáři psali konzistentní, čitelný a čistý kód, který je snadný k udržování a sdílení.
+
+\item Zde je ukázka správně formátovaného bloku python kódu \textbf{listings}:
+\begin{center}
+
+\begin{lstlisting}
+def pozdrav(name):
+    if name:
+        print("Ahoj, " + name)
+    else:
+        print("Ahoj, svete")
+\end{lstlisting}
+\end{center}
+\item Zde je ukázka špatně formátovaného bloku python kódu \textbf{listings}:
+
+\begin{lstlisting}
+def pozdrav(name):
+    if name:
+    print("Ahoj, " + name)
+    else:
+        print("Ahoj, svete")
+\end{lstlisting}
+\item První ukázka obsahuje správně odsazený kód, zatímco druhá ukázka má nesprávné odsazení, což by bylo v rozporu s PEP 8.
+\end{itemize}
+\section{Klíčová slova Pythonu}
+\begin{itemize}
+    \item \textbf{and} - logický operátor: současně platí, a zároveň
+    \item \textbf{as} - příkaz využitý při řešení výjimek
+    \item \textbf{assert} - příkaz využitý při řešení výjimek
+    \item \textbf{break} - ukončení současné činnosti a přechod na další (například vyskočení z cyklu)
+    \item \textbf{class} - třída
+    \item \textbf{continue} - ukončí současný průběh cyklu a zahájí nový průchod cyklem
+    \item \textbf{def} - vytvoření vlastní funkce
+    \item \textbf{del} - zrušení proměnné nebo funkce
+    \item \textbf{elif} - příkaz při vícenásobném větvení (například: if ... elif ... elif ... else...)
+    \item \textbf{else} - ukončení větvení - provede se to, co nesplňuje podmínky předchozích větví
+    \item \textbf{except} - provede následující příkazy, jestliže dojde k výjimce (například: try ... except ...)
+    \item \textbf{exec} - dynamické spouštění kódu programu
+    \item \textbf{finally} - závěrečná část bloku, kde může nastat chyba (například: try ... except ... finally ...)
+    \item \textbf{for} - cyklus se známým počtem opakování
+    \item \textbf{from} - import funkce z externího modulu (například: from ... import ...)
+    \item \textbf{global} - vytvoření globální proměnné, ke které lze přistupovat ze všech míst programu
+    \item \textbf{if} - jestliže, zahajovací podmínka pro větvení
+    \item \textbf{import} - načtení externího modulu nebo jeho položek
+    \item \textbf{in} - logický operátor: v, ve = vrací True, jestliže to, co je vlevo, je obsaženo v tom, co je vpravo
+    \item \textbf{is} - logický operátor: zjištění, zda jsou dva objekty totožné, obsahují stejná data
+    \item \textbf{lambda} - vytvoření funkce pro jednorázové použití
+    \item \textbf{local} - vytvoření lokální proměnné, například uvnitř funkce
+    \item \textbf{nonlocal} - vytvoření proměnné s omezeným rozsahem platnosti
+    \item \textbf{not} - logický operátor: není, opak, negace
+    \item \textbf{or} - logický operátor: nebo
+    \item \textbf{pass} - příkaz \textit{pass} nedělá nic, používá se tam, kde nějaký příkaz musí být, ale neprovádí se žádná činnost
+    \item \textbf{raise} - příkaz využitý při řešení výjimek
+    \item \textbf{return} - vrací výsledek funkce, podobně jako \textit{print}, ale bez jakýchkoliv úprav
+    \item \textbf{try} - spouští blok, ve kterém se může očekávat chyba, výjimka (například: try ... except ... finally ...)
+    \item \textbf{while} - cyklus s předem neznámým počtem opakování, provádí se, dokud platí podmínka
+    \item \textbf{with} - používá se v kontextových managers
+    \item \textbf{yield} - používá se v generátorech pro generování hodnot
+    \item \textbf{True} - pravda, platí, 1, ano
+    \item \textbf{False} - nepravda, neplatí, 0, ne
+    \item \textbf{None} - žádný, nic
+\end{itemize}
+\section{Tabulka základních datových typů v Pythonu}
+\begin{table}[htbp]
+\centering
+\caption{Základní/primitivní datové typy v Pythonu}
+\label{tab:python-datatypes}
+\begin{tabularx}{\textwidth}{|c|X|X|}
+\hline
+\textbf{Datový typ} & \textbf{Zastupuje} & \textbf{Příklady} \\
+\hline
+\texttt{int} & Celé číslo & 42, -5, 2 \\
+\hline
+\texttt{float} & Desetinné číslo & 3.14, -0.2, 1.2 \\
+\hline
+\texttt{bool} & Booleovská hodnota & \texttt{True}, \texttt{False} \\
+\hline
+\texttt{complex} & Komplexní číslo & $1 + 2d$, $-3 + 2n$, $0 + 10k$ \\
+\hline
+\texttt{str} & Řetězec znaků & 'Hello', '42' \\
+\hline
+\end{tabularx}
+\end{table}
+\section{Komentáře v Pythonu}
+\begin{itemize}
+\item \textbf{Jednořádkový komentář:} Jednořádkový komentář v Pythonu je způsob, jak vložit poznámku nebo vysvětlení přímo do kódu na jediném řádku. Komentáře jsou ignorovány interpretrem Pythonu a slouží pouze pro lidské čtení kódu. Syntaxe jednořádkového komentáře je následující:
+
+\textbf{Příklad:}
+\begin{lstlisting}
+    # Toto je jednoradkovy komentar
+\end{lstlisting}
+\item \textbf{Víceřádkový komentář:} V Pythonu lze použít víceřádkové komentáře pomocí tzv. "docstringů" (dokumentačních řetězců), což jsou víceřádkové řetězce, které jsou umístěny na začátku funkce, třídy, modulu nebo metody a slouží k dokumentaci daného kódu. Docstrings jsou běžně používány pro vytváření dokumentace kódu, protože jsou snadno dostupné pomocí některých nástrojů a můžete je snadno extrahovat pro generování dokumentace.
+
+\textbf{Příklad:}
+
+""
+    Toto je víceřádkový komentář,
+
+    který slouží k dokumentaci této funkce.
+    ""
+
+\end{itemize}
+\section{Použité Zdroje}
+\begin{itemize}
+  \item \href{https://kitner.cz/testovani_softwaru/jak-nainstalovat-python/}{1. Instalace Pythonu}
+  \item \href{https://quizlet.com/503181776/python-klicova-slova-flash-cards/}{2. Klíčová slova Pythonu}
+  \item \href{https://training.gismentors.eu/geopython-zacatecnik/python/comments.html}{3. Komentáře v Pythonu}
+  \item \href{https://en.wikipedia.org/wiki/Python_(programming_language)}{4. Historie Pythonu}
+\end{itemize}
+\end{document}
