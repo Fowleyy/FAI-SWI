@@ -1,116 +1,131 @@
+import re
+from math import gcd
 import tkinter as tk
 from tkinter import messagebox
-from math import gcd
 import string
 
+def editText(vstup):
+    vstup = vstup.lower()
+    result = ""
+    znaky = {
+        "á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u",
+        "ě": "e", "ů": "u", "č": "c", "ř": "r", "š": "s",
+        "ť": "t", "ň": "n", "ď": "d", "ž": "z", "ý": "y",
+        "0": "xnulax", "1": "xjednax", "2": "xdvax", "3": "xtrix",
+        "4": "xctyrix", "5": "xpetx", "6": "xsestx", "7": "xsedmx",
+        "8": "xosmx", "9": "xdevetx"
+    }
+    for znak in vstup:
+        if znak in znaky:
+            result += znaky[znak]
+        elif re.match("[a-z ]", znak):
+            result += znak
+    
+    result = result.upper()
+    result = result.replace(" ", "XMEZERAX")    
+    return result
 
-def odstranit_diakritiku(text):
-    # Odstraní diakritiku a ponechá pouze alfanumerické znaky a mezery
-    text_bez_diakritiky = ''.join(c for c in text if c.isalnum() or c.isspace())
-    return text_bez_diakritiky
+def MezeryPo5(text):
+    return ' '.join([text[i:i+5] for i in range(0, len(text), 5)])
 
-
-def sifruj(text, a, b):
+def sifrovani(text, a, b):
     if gcd(a, 26) != 1:
         raise ValueError("Hodnoty klíčů musí být nesoudělné s 26.")
 
-    abeceda = string.ascii_uppercase
-    cisla = string.digits
-    text = odstranit_diakritiku(text).upper()
-
-    sifrovany_text = []
+    source = string.ascii_uppercase
+    result = ""
 
     for znak in text:
-        if znak in abeceda:
-            index = abeceda.index(znak)
-            sifrovany_znak = abeceda[(a * index + b) % 26]
-            sifrovany_text.append(sifrovany_znak)
-
-        elif znak in cisla:
-            index = cisla.index(znak)
-            sifrovany_znak = cisla[(a * index + b) % 10]
-            sifrovany_text.append(sifrovany_znak)
-
-        elif znak == " ":
-            sifrovany_text.append("XMEZERAX")  # Šifrujeme mezeru jako "XMEZERAX"
-
-    # Rozdělení na bloky po 5 znacích
-    bloky = [''.join(sifrovany_text[i:i + 5]) for i in range(0, len(sifrovany_text), 5)]
-    return ''.join(bloky)
+        if znak in source:
+            c = source.index(znak)
+            r = (a * c + b) % 26
+            result += source[r]
+                 
+    return MezeryPo5(result)
 
 
-def desifruj(text, a, b):
+def desifrovani(text, a, b, vstup):
     if gcd(a, 26) != 1:
         raise ValueError("Hodnoty klíčů musí být nesoudělné s 26.")
 
-    abeceda = string.ascii_uppercase
-    cisla = string.digits
+    source = string.ascii_uppercase
+    result = ""
     inverzni = pow(a, -1, 26)
-
-    desifrovany_text = []
-
-    # Nahrazení "XMEZERAX" zpět na mezeru
-    text = text.replace("XMEZERAX", " ")
+    text = text.replace(" ", "")
 
     for znak in text:
-        if znak in abeceda:
-            index = abeceda.index(znak)
-            desifrovany_znak = abeceda[(inverzni * (index - b)) % 26]
-            desifrovany_text.append(desifrovany_znak)
+        c = source.index(znak)
+        r = (inverzni * (c - b)) % 26
+        result += source[r]
 
-        elif znak in cisla:
-            index = cisla.index(znak)
-            desifrovany_znak = str((inverzni * (index - b)) % 10)
-            desifrovany_text.append(desifrovany_znak)
-
-    return ''.join(desifrovany_text)
+    result = result.replace("XMEZERAX", " ").replace("XNULAX", "0")
+    result = result.replace("XJEDNAX", "1").replace("XDVAX", "2").replace("XTRIX","3")
+    result = result.replace("XCTYRIX", "4").replace("XPETX", "5").replace("XSESTX", "6")
+    result = result.replace("XSEDMX", "7").replace("XOSMX", "8").replace("XDEVETX", "9")
+    return result
 
 
-def zpracuj_text(typ):
+def sifruj_zprava():
     try:
-        text = vstup_text.get("1.0", tk.END).strip()
-        a = int(vstup_a.get())
-        b = int(vstup_b.get())
-
-        if typ == "sifruj":
-            vysledek = sifruj(text, a, b)
-        else:
-            vysledek = desifruj(text, a, b)
-
-        vystup_text.delete("1.0", tk.END)
-        vystup_text.insert(tk.END, vysledek)
-
+        a = int(a_vstup.get())
+        b = int(b_vstup.get())
+        vstup = editText(text_entry.get())
+        sifrovany_text = sifrovani(vstup, a, b)
+        result_text.delete(1.0, tk.END)
+        result_text.insert(tk.END, sifrovany_text)
     except ValueError as e:
         messagebox.showerror("Chyba", str(e))
 
+def desifruj_zprava():
+    try:
+        a = int(a_vstup.get())
+        b = int(b_vstup.get())
+        vstup = editText(text_entry.get())
+        desifrovany_text = desifrovani(result_text.get(1.0, tk.END).strip(), a, b, vstup)
+        result_text.delete(1.0, tk.END)
+        result_text.insert(tk.END, desifrovany_text)
+    except ValueError as e:
+        messagebox.showerror("Chyba", str(e))
 
 root = tk.Tk()
-root.title("Šifra")
+root.title("Afinní šifra")
+root.geometry("600x400")
 
-label_vstup = tk.Label(root, text="Zadejte text:")
-label_vstup.pack()
-vstup_text = tk.Text(root, height=5, width=30)
-vstup_text.pack()
+font_title = ('Arial', 20, 'bold')
+font_small = ('Arial', 12)
+bg_color = "#f0f0f0"
 
-label_a = tk.Label(root, text="Zadejte klíč a:")
-label_a.pack()
-vstup_a = tk.Entry(root)
-vstup_a.pack()
+root.configure(bg=bg_color)
 
-label_b = tk.Label(root, text="Zadejte klíč b:")
-label_b.pack()
-vstup_b = tk.Entry(root)
-vstup_b.pack()
+nadpis_label = tk.Label(root, text="Afinní šifra", font=font_title, bg=bg_color)
+nadpis_label.pack(pady=20)
 
-button_sifrovat = tk.Button(root, text="Zašifrovat", command=lambda: zpracuj_text("sifruj"))
-button_sifrovat.pack()
+tk.Label(root, text="Zadejte text:", font=font_small, bg=bg_color).pack(pady=5)
+text_entry = tk.Entry(root, width=50, font=font_small)
+text_entry.pack(pady=5)
 
-button_desifrovat = tk.Button(root, text="Dešifrovat", command=lambda: zpracuj_text("desifruj"))
-button_desifrovat.pack()
+klice_tlac = tk.Frame(root, bg=bg_color)
+klice_tlac.pack(pady=10)
 
-label_vystup = tk.Label(root, text="Výsledek:")
-label_vystup.pack()
-vystup_text = tk.Text(root, height=5, width=30)
-vystup_text.pack()
+tk.Label(klice_tlac, text="Klíč A:", font=font_small, bg=bg_color).grid(row=0, column=0, padx=10)
+a_vstup = tk.Entry(klice_tlac, font=font_small, width=5)
+a_vstup.grid(row=0, column=1, padx=10)
+
+tk.Label(klice_tlac, text="Klíč B:", font=font_small, bg=bg_color).grid(row=0, column=2, padx=10)
+b_vstup = tk.Entry(klice_tlac, font=font_small, width=5)
+b_vstup.grid(row=0, column=3, padx=10)
+
+tlacitka_sif = tk.Frame(root, bg=bg_color)
+tlacitka_sif.pack(pady=10)
+
+sifruj_tlac = tk.Button(tlacitka_sif, text="Šifrovat", command=sifruj_zprava, font=font_small, width=10)
+sifruj_tlac.grid(row=0, column=0, padx=10)
+
+desifruj_tlac = tk.Button(tlacitka_sif, text="Dešifrovat", command=desifruj_zprava, font=font_small, width=10)
+desifruj_tlac.grid(row=0, column=1, padx=10)
+
+tk.Label(root, text="Výsledek:", font=font_small, bg=bg_color).pack(pady=10)
+result_text = tk.Text(root, height=5, width=50, font=font_small)
+result_text.pack(pady=5)
 
 root.mainloop()
