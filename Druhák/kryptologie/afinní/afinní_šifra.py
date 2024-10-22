@@ -1,4 +1,3 @@
-import re
 from math import gcd
 import tkinter as tk
 from tkinter import messagebox
@@ -15,18 +14,17 @@ def editText(vstup):
         "4": "xctyrix", "5": "xpetx", "6": "xsestx", "7": "xsedmx",
         "8": "xosmx", "9": "xdevetx"
     }
+    
     for znak in vstup:
         if znak in znaky:
             result += znaky[znak]
-        elif re.match("[a-z ]", znak):
+        elif 'a' <= znak <= 'z' or znak == ' ':  # Kontrola, zda je znak písmeno nebo mezera
             result += znak
     
     result = result.upper()
-    result = result.replace(" ", "XMEZERAX")    
+    result = result.replace(" ", "XMEZERAX")
     return result
 
-def MezeryPo5(text):
-    return ' '.join([text[i:i+5] for i in range(0, len(text), 5)])
 
 def sifrovani(text, a, b):
     if gcd(a, 26) != 1:
@@ -40,8 +38,9 @@ def sifrovani(text, a, b):
             c = source.index(znak)
             r = (a * c + b) % 26
             result += source[r]
-                 
-    return MezeryPo5(result)
+    
+
+    return ' '.join([result[i:i+5] for i in range(0, len(result), 5)])
 
 
 def desifrovani(text, a, b, vstup):
