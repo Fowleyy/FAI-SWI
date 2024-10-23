@@ -107,7 +107,7 @@ def desifruj(tabulka, text):
     for doubleChar in splittext:
         pos1 = najdi_prvek(tabulka, doubleChar[0])
         pos2 = najdi_prvek(tabulka, doubleChar[1])
-        
+
         if pos1 is None or pos2 is None:
             return None
 
@@ -122,7 +122,7 @@ def desifruj(tabulka, text):
             r2 = (r2 - 1) % 5
         else:
             c1, c2 = c2, c1
-        
+
         result += tabulka[r1][c1] + tabulka[r2][c2]
 
     result = result.replace("XMEZERAX", " ")
@@ -132,6 +132,7 @@ def desifruj(tabulka, text):
     result = result.rstrip('X')
 
     return result
+
 
 
 def sifrovani():
@@ -151,11 +152,10 @@ def sifrovani():
         for row in tabulka_sifry:
             tabulka_textbox.insert(tk.END, ' '.join(row) + '\n')
 
-        upraveny_textbox.delete("1.0", tk.END)
-        upraveny_textbox.insert(tk.END, upraveny_text)
     else:
         vystup_textbox.delete("1.0", tk.END)
         vystup_textbox.insert(tk.END, "Chyba při šifrování.")
+
 
 
 def desifrovani():
