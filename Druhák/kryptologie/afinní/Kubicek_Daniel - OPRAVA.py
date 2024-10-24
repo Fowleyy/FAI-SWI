@@ -58,6 +58,9 @@ def desifrovani(text, a, b, vstup):
     result = result.replace("XJEDNAX", "1").replace("XDVAX", "2").replace("XTRIX","3")
     result = result.replace("XCTYRIX", "4").replace("XPETX", "5").replace("XSESTX", "6")
     result = result.replace("XSEDMX", "7").replace("XOSMX", "8").replace("XDEVETX", "9")
+
+    
+
     return result
 
 def zpracuj_text():
