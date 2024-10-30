@@ -75,8 +75,16 @@ def sifruj_zprava():
         b = int(b_vstup.get())
         vstup = editText(text_entry.get())
         sifrovany_text = sifrovani(vstup, a, b)
+        sifr_abeceda = sifrovani("ABCDEFGHIJKLMNOPQRSTUVWXYZ", a, b)
         result_text.delete(1.0, tk.END)
         result_text.insert(tk.END, sifrovany_text)
+
+        original_abeceda.delete(1.0, tk.END)
+        original_abeceda.insert(tk.END, "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+
+        zasifrovana_abeceda.delete(1.0, tk.END)
+        zasifrovana_abeceda.insert(tk.END, sifr_abeceda)
+
 
         zpracuj_text()
         
@@ -96,7 +104,7 @@ def desifruj_zprava():
 
 root = tk.Tk()
 root.title("Afinní šifra")
-root.geometry("600x600")
+root.geometry("600x700")
 
 font_title = ('Arial', 20, 'bold')
 font_small = ('Arial', 12)
@@ -138,6 +146,14 @@ filtered_text_display.pack(pady=5)
 tk.Label(root, text="Výsledek:", font=font_small, bg=bg_color).pack(pady=10)
 result_text = tk.Text(root, height=5, width=50, font=font_small)
 result_text.pack(pady=5)
+
+tk.Label(root, text="Nezašifrovaná abeceda:", font=font_small, bg=bg_color).pack(pady=10)
+original_abeceda = tk.Text(root, height=1, width=50, font=font_small)
+original_abeceda.pack(pady=5)
+
+tk.Label(root, text="Zašifrovaná abeceda:", font=font_small, bg=bg_color).pack(pady=10)
+zasifrovana_abeceda = tk.Text(root, height=1, width=50, font=font_small)
+zasifrovana_abeceda.pack(pady=5)
 
 
 root.mainloop()
