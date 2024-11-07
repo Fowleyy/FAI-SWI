@@ -43,6 +43,11 @@ def uprava_textu(text):
         elif c == " ":
             result += "XMEZERAX"
     result = result.upper()
+
+    # Kontrola počtu znaků
+    if len(result) % 2 == 1:
+        result += 'X'  # Přidání 'X' na konec, pokud je počet znaků lichý
+
     return result
 
 
@@ -71,8 +76,6 @@ def najdi_prvek(arr, input):
 
 
 def sifruj(tabulka, text):
-    if len(text) % 2 == 1:
-        text += 'X'
 
     dvojice = [text[i:i + 2] for i in range(0, len(text), 2)]
     result = ""
@@ -101,10 +104,15 @@ def sifruj(tabulka, text):
 
 def desifruj(tabulka, text):
     text = text.replace(" ", "")
+
     splittext = ["".join(text[i:i+2]) for i in range(0, len(text), 2)]
     result = ""
 
+    # Projdeme každou dvojici znaků
     for doubleChar in splittext:
+        if len(doubleChar) < 2:  # Zkontrolujeme, zda dvojice obsahuje alespoň 2 znaky
+            continue  # Přejdeme na další iteraci, pokud není dvojice úplná
+
         pos1 = najdi_prvek(tabulka, doubleChar[0])
         pos2 = najdi_prvek(tabulka, doubleChar[1])
 
@@ -129,10 +137,12 @@ def desifruj(tabulka, text):
     result = result.replace("XJEDNAX", "1").replace("XDVAX", "2").replace("XTRIX", "3")
     result = result.replace("XNULAX", "0").replace("XCTYRIX", "4").replace("XPETX", "5")
     result = result.replace("XSESTX", "6").replace("XSEDMX", "7").replace("XOSMX", "8").replace("XDEVETX", "9")
-    result = result.rstrip('X')
+
+    # Odstranění 'X' na konci
+    if result.endswith('X'):
+        result = result[:-1]  # Odstraní poslední znak 'X'
 
     return result
-
 
 
 def sifrovani():
@@ -142,6 +152,9 @@ def sifrovani():
     
     upraveny_text = uprava_textu(vstup_text)
     tabulka_sifry = tabulka(klic, jazyk)
+
+    filtr_textbox.delete("1.0", tk.END)
+    filtr_textbox.insert(tk.END, upraveny_text)
     
     zasifrovany_text = sifruj(tabulka_sifry, upraveny_text)
     if zasifrovany_text is not None:
@@ -177,7 +190,7 @@ def desifrovani():
 
 root = tk.Tk()
 root.title("PlayFair Šifra")
-root.geometry("600x500")
+root.geometry("600x600")
 
 nadpis = tk.Label(root, text="PlayFair šifra", font=("Helvetica", 18, "bold"))
 nadpis.pack(pady=10)
@@ -219,6 +232,13 @@ desifrovat_button.pack(side=tk.LEFT, padx=5)
 
 pole_output = tk.Frame(root)
 pole_output.pack(pady=5)
+
+filtr_label = tk.Label(pole_output, text="Filtrovaný text:")
+filtr_label.pack()
+
+filtr_textbox = scrolledtext.ScrolledText(pole_output, wrap=tk.WORD, width=70, height=5)
+filtr_textbox.pack()
+
 
 vystup_label = tk.Label(pole_output, text="Výstup:")
 vystup_label.pack()
