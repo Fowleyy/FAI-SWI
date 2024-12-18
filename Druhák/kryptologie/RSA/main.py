@@ -32,7 +32,7 @@ def vytvorPrvo(min, max):
         cislo = random.randint(min, max)
         if checkPrvo(cislo):
             return cislo
-        
+
 
 def vytvorKlic():
     global e, d, n
@@ -46,14 +46,14 @@ def vytvorKlic():
             if 10**12 <= n < 10**13:
                 break
 
-    phi_n = (p - 1) * (q - 1)
+    fi = (p - 1) * (q - 1)
 
     while True:
-        e = random.randint(2, phi_n)
-        if math.gcd(e, phi_n) == 1:
+        e = random.randint(2, fi)
+        if math.gcd(e, fi) == 1:
             break
 
-    d = pow(e, -1, phi_n)
+    d = pow(e, -1, fi)
 
     e_str = f"{e:013d}"
     d_str = f"{d:013d}"
@@ -68,15 +68,14 @@ def vytvorKlic():
 def sifruj(text):
     global e, n
 
-    bloky = [text[i:i+6] for i in range(0, len(text), 6)]
+    block_size = (len(str(n)) - 1) // 2
+    bloky = [text[i:i + block_size] for i in range(0, len(text), block_size)]
 
     sifrovane_bloky = []
-    max_block_size = len(str(n))
-
     for block in bloky:
-        zasifrovany_block = [pow(ord(c), e, n) for c in block]
-        zasifrovany_block_str = ''.join([f"{c:0{max_block_size}d}" for c in zasifrovany_block])
-        sifrovane_bloky.append(zasifrovany_block_str)
+        block_num = int(''.join(f"{ord(c):03}" for c in block))
+        zasifrovany_block = pow(block_num, e, n)
+        sifrovane_bloky.append(f"{zasifrovany_block}")
 
     result = ' '.join(sifrovane_bloky)
 
@@ -84,19 +83,22 @@ def sifruj(text):
     sifruj_text.insert(tk.END, result)
 
 
-
 def desifruj(text):
     global d, n
 
-    full_text = ''.join(text.split())
-    max_block_size = len(str(n))
-    text_numbers = [int(full_text[i:i+max_block_size]) for i in range(0, len(full_text), max_block_size)]
-    
-    result = ''.join(chr(pow(c, d, n)) for c in text_numbers)
-    
+    sifrovane_bloky = text.split()
+    block_size = (len(str(n)) - 1) // 2
+
+    desifrovane_bloky = []
+    for block in sifrovane_bloky:
+        decrypted_block_num = pow(int(block), d, n)
+        decrypted_block_str = str(decrypted_block_num).zfill(block_size * 3)
+        desifrovane_bloky.append(''.join(chr(int(decrypted_block_str[i:i + 3])) for i in range(0, len(decrypted_block_str), 3)))
+
+    result = ''.join(desifrovane_bloky)
+
     desifruj_text_output.delete("1.0", tk.END)
     desifruj_text_output.insert(tk.END, result)
-
 
 
 root = tk.Tk()
