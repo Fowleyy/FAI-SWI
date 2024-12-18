@@ -8,17 +8,17 @@ import zipfile
 import math
 import platform
 
-output_directory = None
+output_slozka = None
 
 
-def generate_prime(bits):
-    def is_prime(n, k=5):
+def vytvorPrvo(bits):
+    def checkPrvo(n, k=5):
         if n <= 1 or n == 4:
             return False
         if n <= 3:
             return True
 
-        def check_composite(a, d, n, s):
+        def jeSlozene(a, d, n, s):
             x = pow(a, d, n)
             if x == 1 or x == n - 1:
                 return False
@@ -36,17 +36,18 @@ def generate_prime(bits):
 
         for _ in range(5):
             a = random.randint(2, n - 2)
-            if check_composite(a, d, n, s):
+            if jeSlozene(a, d, n, s):
                 return False
         return True
 
     while True:
-        candidate = random.getrandbits(bits)
-        candidate |= (1 << bits - 1) | 1
-        if is_prime(candidate):
-            return candidate
+        cislo = random.getrandbits(bits)
+        cislo |= (1 << bits - 1) | 1
+        if checkPrvo(cislo):
+            return cislo
 
-def generate_keypair(p, q):
+
+def vytvorKlice(p, q):
     n = p * q
     phi = (p - 1) * (q - 1)
 
@@ -58,55 +59,63 @@ def generate_keypair(p, q):
 
     return ((e, n), (d, n))
 
+
 def int_to_bytes(x):
     return x.to_bytes((x.bit_length() + 7) // 8, 'big')
+
 
 def bytes_to_int(xbytes):
     return int.from_bytes(xbytes, 'big')
 
-def encrypt(message, public_key):
+
+def sifruj(text, public_key):
     e, n = public_key
-    message_bytes = message.encode('utf-8')
-    message_int = bytes_to_int(message_bytes)
-    encrypted_int = pow(message_int, e, n)
-    return encrypted_int
+    text_bytes = text.encode('utf-8')
+    text_int = bytes_to_int(text_bytes)
+    result = pow(text_int, e, n)
+    return result
 
-def decrypt(cipher, private_key):
+
+def desifruj(text, private_key):
     d, n = private_key
-    decrypted_int = pow(cipher, d, n)
-    decrypted_bytes = int_to_bytes(decrypted_int)
-    return decrypted_bytes.decode('utf-8')
+    desifrovany_int = pow(text, d, n)
+    result = int_to_bytes(desifrovany_int)
+    return result.decode('utf-8')
 
-def select_output_directory():
-    global output_directory
-    output_directory = filedialog.askdirectory(title="Vyberte Výstupní Složku")
-    if output_directory:
-        output_directory_label.config(text=output_directory)
-        messagebox.showinfo("Úspěch", f"Výstupní složka byla nastavena na: {output_directory}")
-        open_folder(output_directory)  # Otevře složku po výběru
+
+def vyberSlozku():
+    global output_slozka
+    output_slozka = filedialog.askdirectory(title="Vyberte Výstupní Složku")
+    if output_slozka:
+        output_slozka_label.config(text=output_slozka)
+        messagebox.showinfo("Úspěch", f"Výstupní složka byla nastavena na: {output_slozka}")
+        otevriSlozku(output_slozka)
     else:
         messagebox.showwarning("Varování", "Nebyla vybrána žádná složka!")
 
-def open_folder(path):
+
+def otevriSlozku(path):
     if platform.system() == "Windows":
         os.startfile(path)
-    elif platform.system() == "Darwin":  # macOS
+    elif platform.system() == "Darwin":
         os.system(f"open {path}")
-    else:  # Linux
+    else:
         os.system(f"xdg-open {path}")
 
-def generate_keypair_ui():
-    if not output_directory:
+
+def vytvorKlice_ui():
+    if not output_slozka:
         messagebox.showerror("Chyba", "Výstupní složka není nastavena. Vyberte složku.")
         return
 
 
-    p = generate_prime(1024)
-    q = generate_prime(1024)
-    public_key, private_key = generate_keypair(p, q)
+    p = vytvorPrvo(1024)
+    q = vytvorPrvo(1024)
 
-    priv_path = os.path.join(output_directory, "private_key.priv")
-    pub_path = os.path.join(output_directory, "public_key.pub")
+    public_key, private_key = vytvorKlice(p, q)
+
+    priv_path = os.path.join(output_slozka, "private_key.priv")
+    pub_path = os.path.join(output_slozka, "public_key.pub")
 
     with open(priv_path, 'w') as f:
         priv_base64 = base64.b64encode(str(private_key).encode()).decode()
@@ -118,20 +127,23 @@ def generate_keypair_ui():
 
     messagebox.showinfo("Úspěch", "Klíčový pár byl vygenerován a uložen.")
 
-def select_file():
-    global selected_file
-    selected_file = filedialog.askopenfilename()
-    if selected_file:
-        filename_label.config(text=os.path.basename(selected_file))
-        filesize_label.config(text=f"{os.path.getsize(selected_file)} bytes")
-        filepath_label.config(text=selected_file)
+def vyberSoubor():
+    global vybranySoubor
+
+    vybranySoubor = filedialog.askopenfilename()
+    
+    if vybranySoubor:
+        filename_label.config(text=os.path.basename(vybranySoubor))
+        filesize_label.config(text=f"{os.path.getsize(vybranySoubor)} bytes")
+        filepath_label.config(text=vybranySoubor)
+
     else:
         filename_label.config(text="---")
         filesize_label.config(text="---")
         filepath_label.config(text="---")
 
-def sign_file_ui():
-    if not selected_file:
+def podpis():
+    if not vybranySoubor:
         messagebox.showwarning("Varování", "Nejprve vyberte soubor.")
         return
 
@@ -143,86 +155,85 @@ def sign_file_ui():
         priv_key_data = f.read().split()[1]
         private_key = eval(base64.b64decode(priv_key_data).decode())
 
-    with open(selected_file, 'rb') as f:
+    with open(vybranySoubor, 'rb') as f:
         file_hash = hashlib.sha3_512(f.read()).digest()
 
-    signature = encrypt(file_hash.hex(), private_key)
-    signature_base64 = base64.b64encode(int_to_bytes(signature)).decode()
+    podpis = sifruj(file_hash.hex(), private_key)
+    podpis_base64 = base64.b64encode(int_to_bytes(podpis)).decode()
 
-    if not output_directory:
+    if not output_slozka:
         messagebox.showwarning("Varování", "Vyberte výstupní složku.")
         return
 
-    output_path = os.path.join(output_directory, os.path.basename(selected_file) + '.zip')
+    output_path = os.path.join(output_slozka, os.path.basename(vybranySoubor) + '.zip')
     with zipfile.ZipFile(output_path, 'w') as zf:
-        zf.write(selected_file, arcname=os.path.basename(selected_file))
+        zf.write(vybranySoubor, arcname=os.path.basename(vybranySoubor))
 
         with zf.open('podpis.sign', 'w') as sign_file:
-            sign_content = f"RSA_SHA3-512 {signature_base64}"
+            sign_content = f"RSA_SHA3-512 {podpis_base64}"
             sign_file.write(sign_content.encode())
 
-    file_info = os.stat(selected_file)
+    soubor_info = os.stat(vybranySoubor)
     info_text = f"""Podepsaný soubor:
-Název: {os.path.basename(selected_file)}
-Cesta: {selected_file}
-Typ: {os.path.splitext(selected_file)[1]}
-Velikost: {file_info.st_size} bytes"""
+Název: {os.path.basename(vybranySoubor)}
+Cesta: {vybranySoubor}
+Typ: {os.path.splitext(vybranySoubor)[1]}
+Velikost: {soubor_info.st_size} bytes"""
     messagebox.showinfo("Informace o souboru", info_text)
 
-def verify_signature_ui():
+
+def overeni():
     zip_path = filedialog.askopenfilename(filetypes=[("ZIP Files", "*.zip")])
     if not zip_path:
         return
 
-    pub_path = filedialog.askopenfilename(title="Vyberte veřejný klíč", filetypes=[("Public Key", "*.pub")])
-    if not pub_path:
+    klic_path = filedialog.askopenfilename(title="Vyberte veřejný klíč", filetypes=[("Public Key", "*.pub")])
+    if not klic_path:
         return
 
-    with open(pub_path, 'r') as f:
-        pub_key_data = f.read().split()[1]
-        public_key = eval(base64.b64decode(pub_key_data).decode())
+    with open(klic_path, 'r') as f:
+        klic_key_data = f.read().split()[1]
+        public_key = eval(base64.b64decode(klic_key_data).decode())
 
     with zipfile.ZipFile(zip_path, 'r') as zf:
-        signed_file_name = [name for name in zf.namelist() if not name.endswith('.sign')][0]
-        signature_file_name = [name for name in zf.namelist() if name.endswith('.sign')][0]
+        podepsany_soubor = [name for name in zf.namelist() if not name.endswith('.sign')][0]
+        podpis = [name for name in zf.namelist() if name.endswith('.sign')][0]
 
-        with zf.open(signed_file_name, 'r') as signed_file:
+        with zf.open(podepsany_soubor, 'r') as signed_file:
             file_content = signed_file.read()
 
-        with zf.open(signature_file_name, 'r') as sign_file:
-            signature_line = sign_file.read().decode()
-            signature_base64 = signature_line.split()[1]
+        with zf.open(podpis, 'r') as sign_file:
+            podpis = sign_file.read().decode()
+            podpis_base64 = podpis.split()[1]
 
     file_hash = hashlib.sha3_512(file_content).digest().hex()
-    signature_int = bytes_to_int(base64.b64decode(signature_base64))
-    decrypted_hash = decrypt(signature_int, public_key)
+    podpis_int = bytes_to_int(base64.b64decode(podpis_base64))
+    desifrovany_hash = desifruj(podpis_int, public_key)
 
-    if decrypted_hash == file_hash:
+    if desifrovany_hash == file_hash:
         messagebox.showinfo("Ověření Podpisu", "Podpis je PLATNÝ!")
     else:
         messagebox.showerror("Ověření Podpisu", "Podpis je NEPLATNÝ!")
 
-# GUI setup
+
 root = tk.Tk()
 root.title("DSA Šifra")
 root.geometry("600x450")
 
-# Label for DSA Šifra (bold title)
 tk.Label(root, text="DSA Šifra", font=("Helvetica", 32, "bold")).pack(pady=10)
 
-# Frame for Output Directory and path
 output_frame = tk.Frame(root)
 output_frame.pack(pady=9)
 
-tk.Button(output_frame, text="Vybrat Výstupní Složku", command=select_output_directory).pack(side=tk.TOP, padx=4)
-output_directory_label = tk.Label(output_frame, text="Není vybrána žádná složka")
-output_directory_label.pack(side=tk.TOP, padx=5)
+tk.Button(output_frame, text="Vybrat Výstupní Složku", command=vyberSlozku).pack(side=tk.TOP, padx=4)
+output_slozka_label = tk.Label(output_frame, text="Není vybrána žádná složka")
+output_slozka_label.pack(side=tk.TOP, padx=5)
 
-# Buttons and file info frames
+
 button_frame = tk.Frame(root)
 button_frame.pack(pady=10)
 
-tk.Button(button_frame, text="Generovat Klíčový Pár", command=generate_keypair_ui).pack(side=tk.LEFT, padx=5)
+tk.Button(button_frame, text="Generovat Klíčový Pár", command=vytvorKlice_ui).pack(side=tk.LEFT, padx=5)
 
 file_info_frame = tk.Frame(root)
 file_info_frame.pack(pady=10)
@@ -239,8 +250,9 @@ tk.Label(file_info_frame, text="Cesta k souboru:").grid(row=2, column=0, padx=5,
 filepath_label = tk.Label(file_info_frame, text="---")
 filepath_label.grid(row=2, column=1, padx=5)
 
-tk.Button(root, text="Vybrat Soubor", command=select_file).pack(pady=10)
-tk.Button(root, text="Podepsat Soubor", command=sign_file_ui).pack(pady=10)
-tk.Button(root, text="Kontrola Podpisu", command=verify_signature_ui).pack(pady=10)
+tk.Button(root, text="Vybrat Soubor", command=vyberSoubor).pack(pady=10)
+tk.Button(root, text="Podepsat Soubor", command=podpis).pack(pady=10)
+tk.Button(root, text="Kontrola Podpisu", command=overeni).pack(pady=10)
+
 
 root.mainloop()
