@@ -1,9 +1,9 @@
 import tkinter as tk
-from tkinter import scrolledtext
+from tkinter import messagebox
 import random
 import math
 
-
+# Kontrola prvočísel - Miller-Rabinův test
 def checkPrvo(n, k=40):
     if n <= 1 or n % 2 == 0:
         return False
@@ -26,14 +26,14 @@ def checkPrvo(n, k=40):
             return False
     return True
 
-
+# Generování náhodného prvočísla v daném rozsahu
 def vytvorPrvo(min, max):
     while True:
         cislo = random.randint(min, max)
         if checkPrvo(cislo):
             return cislo
 
-
+# Generování veřejného a soukromého klíče
 def vytvorKlic():
     global e, d, n
 
@@ -43,7 +43,7 @@ def vytvorKlic():
         p, q = vytvorPrvo(min_cislice, max_cislice), vytvorPrvo(min_cislice, max_cislice)
         if p != q:
             n = p * q
-            if 10**12 <= n < 10**13:
+            if 10**12 <= n < 10**13:  # n má 13 číslic
                 break
 
     fi = (p - 1) * (q - 1)
@@ -53,8 +53,9 @@ def vytvorKlic():
         if math.gcd(e, fi) == 1:
             break
 
-    d = pow(e, -1, fi)
+    d = pow(e, -1, fi)  # Invertuje e mod fi
 
+    # Uložení klíčů do textových polí
     e_str = f"{e:013d}"
     d_str = f"{d:013d}"
 
@@ -64,112 +65,101 @@ def vytvorKlic():
     private_key_text.delete("1.0", tk.END)
     private_key_text.insert(tk.END, f"d: {d_str}\nn: {n}")
 
+# Rozdělení textu na bloky
+def text_to_blocks(text, block_size=7):
+    return [text[i:i + block_size] for i in range(0, len(text), block_size)]
 
-def sifruj(text):
-    global e, n
-
-    block_size = 6  # Velikost bloku (počet znaků v každém bloku)
-    bloky = [text[i:i + block_size] for i in range(0, len(text), block_size)]
-
-    sifrovane_bloky = []
-    for block in bloky:
-        # Převeďte každý znak na 3-místný kód (ASCII), aby každé písmeno mělo 3 číslice
-        block_num = ''.join(f"{ord(c):03}" for c in block)  # Převeďte na číslo jako řetězec
-        # Zasifrujte blok pomocí RSA
-        zasifrovany_block = pow(int(block_num), e, n)
-        sifrovane_bloky.append(str(zasifrovany_block))
-
-    # Spojte všechny šifrované bloky
-    result = ' '.join(sifrovane_bloky)
-
-    sifruj_text.delete("1.0", tk.END)
-    sifruj_text.insert(tk.END, result)
+# Spojení bloků zpět do textu
+def blocks_to_text(blocks):
+    return ''.join(blocks)
 
 
-def desifruj(text):
-    global d, n
+# Funkce pro šifrování zprávy (bloky po 3 znacích)
+def encrypt():
+    try:
+        n = int(public_key_text.get("1.0", tk.END).split("\n")[1].split(": ")[1])
+        e = int(public_key_text.get("1.0", tk.END).split("\n")[0].split(": ")[1])
+        text = message_entry.get()
 
-    sifrovane_bloky = text.split()
-    block_size = 6  # Velikost bloku (počet znaků v každém bloku)
+        # Rozdělení textu na malé bloky (3 znaky)
+        block_size = 3
+        blocks = text_to_blocks(text, block_size)
 
-    desifrovane_bloky = []
-    for block in sifrovane_bloky:
-        # Dešifrujeme blok číslem
-        decrypted_block_num = pow(int(block), d, n)
+        ciphertext = []
+        for block in blocks:
+            block_value = int(''.join(f"{ord(char):03d}" for char in block))  # ASCII -> číslo
+            encrypted_block = pow(block_value, e, n)
+            ciphertext.append(encrypted_block)
 
-        # Převeďte číslo zpět na text
-        decrypted_block_str = str(decrypted_block_num)
-
-        # Ujistíme se, že číslo je dostatečně dlouhé pro všechny bloky
-        decrypted_block_str = decrypted_block_str.zfill(block_size * 3)
-
-        # Rozdělte číslo na části po třech číslicích (každé představuje jeden znak)
-        desifrovany_block = ''.join(chr(int(decrypted_block_str[i:i + 3])) for i in range(0, len(decrypted_block_str), 3))
-
-        desifrovane_bloky.append(desifrovany_block)
-
-    # Spojte všechny dešifrované bloky do výsledné zprávy
-    result = ''.join(desifrovane_bloky)
-
-    desifruj_text_output.delete("1.0", tk.END)
-    desifruj_text_output.insert(tk.END, result)
+        encrypted_text.delete("1.0", tk.END)
+        encrypted_text.insert(tk.END, " ".join(map(str, ciphertext)))
+    except Exception as ex:
+        messagebox.showerror("Chyba", f"Šifrování selhalo: {ex}")
 
 
+def decrypt():
+    try:
+        n = int(private_key_text.get("1.0", tk.END).split("\n")[1].split(": ")[1])
+        d = int(private_key_text.get("1.0", tk.END).split("\n")[0].split(": ")[1])
+        ciphertext = list(map(int, encrypted_text.get("1.0", tk.END).split()))
 
+        decrypted_blocks = []
+        for block in ciphertext:
+            decrypted_value = pow(block, d, n)
+            block_str = str(decrypted_value).zfill(18)  # 6 characters, each 3 digits
+
+            # Convert each 3-digit segment back to a character
+            chars = [chr(int(block_str[i:i + 3])) for i in range(0, len(block_str), 3)]
+            
+            # Join characters to form the decrypted block
+            decrypted_blocks.append(''.join(chars))
+
+        plaintext = ''.join(decrypted_blocks)
+        
+        # Remove any potential null characters that might have been added as padding
+        plaintext = plaintext.replace('\x00', '')
+
+        decrypted_text.delete("1.0", tk.END)
+        decrypted_text.insert(tk.END, plaintext)
+    except Exception as ex:
+        messagebox.showerror("Chyba", f"Dešifrování selhalo: {ex}")
+
+
+# GUI
 root = tk.Tk()
 root.title("RSA Šifrovací Nástroj")
-root.geometry("600x600")
+root.geometry("600x700")
 
-title_label = tk.Label(root, text="RSA Šifra", font=("Helvetica", 18, "bold"))
-title_label.pack(pady=10)
+# Nadpis
+tk.Label(root, text="RSA Šifra", font=("Helvetica", 16, "bold")).pack(pady=10)
 
-menu_frame = tk.Frame(root)
-menu_frame.pack(pady=10)
+# Generování klíčů
+tk.Button(root, text="Generovat Klíče", command=vytvorKlic).pack()
 
-vytvorKlic_button = tk.Button(menu_frame, text="Generovat Klíč", command=vytvorKlic)
-vytvorKlic_button.grid(row=0, column=0, padx=5)
+tk.Label(root, text="Veřejný Klíč:").pack()
+public_key_text = tk.Text(root, height=3, width=60)
+public_key_text.pack()
 
-key_frame = tk.Frame(root)
-key_frame.pack(pady=10)
+tk.Label(root, text="Soukromý Klíč:").pack()
+private_key_text = tk.Text(root, height=3, width=60)
+private_key_text.pack()
 
-public_key_label = tk.Label(key_frame, text="Veřejný Klíč:")
-public_key_label.grid(row=0, column=0, padx=5)
+# Zpráva k šifrování
+tk.Label(root, text="Zpráva k zašifrování:").pack()
+message_entry = tk.Entry(root, width=50)
+message_entry.pack()
 
-public_key_text = scrolledtext.ScrolledText(key_frame, height=3, width=20)
-public_key_text.grid(row=0, column=1, padx=5)
+# Tlačítka šifrování a dešifrování
+tk.Button(root, text="Zašifrovat", command=encrypt).pack(pady=5)
+tk.Button(root, text="Dešifrovat", command=decrypt).pack()
 
-private_key_label = tk.Label(key_frame, text="Soukromý Klíč:")
-private_key_label.grid(row=0, column=2, padx=5)
+# Výsledky
+tk.Label(root, text="Šifrovaná Zpráva:").pack()
+encrypted_text = tk.Text(root, height=5, width=60)
+encrypted_text.pack()
 
-private_key_text = scrolledtext.ScrolledText(key_frame, height=3, width=20)
-private_key_text.grid(row=0, column=3, padx=5)
-
-# Pole pro šifrování
-message_label = tk.Label(root, text="Zpráva k zašifrování:")
-message_label.pack(pady=5)
-
-message_input = tk.Entry(root, width=40)
-message_input.pack(pady=5)
-
-sifruj_frame = tk.Frame(root)
-sifruj_frame.pack(pady=10)
-
-sifruj_button = tk.Button(sifruj_frame, text="Zašifrovat", command=lambda: sifruj(message_input.get()))
-sifruj_button.grid(row=0, column=0, padx=5)
-
-desifruj_button = tk.Button(sifruj_frame, text="Dešifrovat", command=lambda: desifruj(sifruj_text.get("1.0", tk.END)))
-desifruj_button.grid(row=0, column=1, padx=5)
-
-sifruj_label = tk.Label(root, text="Šifrovaná Zpráva:")
-sifruj_label.pack(pady=5)
-
-sifruj_text = scrolledtext.ScrolledText(root, height=5, width=60)
-sifruj_text.pack(pady=5)
-
-desifruj_label = tk.Label(root, text="Dešifrováná Zpráva:")
-desifruj_label.pack(pady=10)
-
-desifruj_text_output = scrolledtext.ScrolledText(root, height=5, width=60)
-desifruj_text_output.pack(pady=5)
+tk.Label(root, text="Dešifrovaná Zpráva:").pack()
+decrypted_text = tk.Text(root, height=5, width=60)
+decrypted_text.pack()
 
 root.mainloop()
