@@ -4,6 +4,7 @@ import random
 import math
 
 
+# Funkce pro zjištění prvočíselnosti
 def checkPrvo(n, k=40):
     if n <= 1 or n % 2 == 0:
         return False
@@ -27,80 +28,76 @@ def checkPrvo(n, k=40):
     return True
 
 
+# Funkce pro generování prvočísel
 def vytvorPrvo(min, max):
     while True:
         cislo = random.randint(min, max)
         if checkPrvo(cislo):
             return cislo
+        
 
-
+# Funkce pro generování klíčů
 def vytvorKlic():
     global e, d, n
 
-    min_cislice, max_cislice = 10**6, 10**7 - 1
+    min, max = 10**6, 10**7 - 1
+    p, q = vytvorPrvo(min, max), vytvorPrvo(min, max)
+    while p == q:
+        q = vytvorPrvo(min, max)
 
+    n = p * q
+    phi_n = (p - 1) * (q - 1)
+
+    # Generování veřejného exponentu e
     while True:
-        p, q = vytvorPrvo(min_cislice, max_cislice), vytvorPrvo(min_cislice, max_cislice)
-        if p != q:
-            n = p * q
-            if 10**12 <= n < 10**13:
-                break
-
-    fi = (p - 1) * (q - 1)
-
-    while True:
-        e = random.randint(2, fi)
-        if math.gcd(e, fi) == 1:
+        e = random.randint(2, phi_n)
+        if math.gcd(e, phi_n) == 1:
             break
 
-    d = pow(e, -1, fi)
+    d = pow(e, -1, phi_n)
 
-    e_str = f"{e:013d}"
-    d_str = f"{d:013d}"
+    public_key = f"{str(e)[-13:]}"
+    private_key = f"{str(d)[-13:]}"
 
     public_key_text.delete("1.0", tk.END)
-    public_key_text.insert(tk.END, f"e: {e_str}\nn: {n}")
+    public_key_text.insert(tk.END, public_key)
 
     private_key_text.delete("1.0", tk.END)
-    private_key_text.insert(tk.END, f"d: {d_str}\nn: {n}")
+    private_key_text.insert(tk.END, private_key)
 
 
+# Funkce pro šifrování
 def sifruj(text):
     global e, n
 
-    block_size = (len(str(n)) - 1) // 2
-    bloky = [text[i:i + block_size] for i in range(0, len(text), block_size)]
-
-    sifrovane_bloky = []
-    for block in bloky:
-        block_num = int(''.join(f"{ord(c):03}" for c in block))
-        zasifrovany_block = pow(block_num, e, n)
-        sifrovane_bloky.append(f"{zasifrovany_block}")
-
-    result = ' '.join(sifrovane_bloky)
-
+    result = [pow(ord(c), e, n) for c in text]
+    max_block_size = len(str(n))
+    result_strings = [f"{c:0{max_block_size}d}" for c in result]
+    full_result = ''.join(result_strings)
+    
+    # Zobrazení šifrované zprávy
     sifruj_text.delete("1.0", tk.END)
-    sifruj_text.insert(tk.END, result)
+    sifruj_text.insert(tk.END, ' '.join(full_result[i:i+6] for i in range(0, len(full_result), 6)))
 
 
+# Funkce pro dešifrování
+# Funkce pro dešifrování
 def desifruj(text):
     global d, n
 
-    sifrovane_bloky = text.split()
-    block_size = (len(str(n)) - 1) // 2
-
-    desifrovane_bloky = []
-    for block in sifrovane_bloky:
-        decrypted_block_num = pow(int(block), d, n)
-        decrypted_block_str = str(decrypted_block_num).zfill(block_size * 3)
-        desifrovane_bloky.append(''.join(chr(int(decrypted_block_str[i:i + 3])) for i in range(0, len(decrypted_block_str), 3)))
-
-    result = ''.join(desifrovane_bloky)
-
-    desifruj_text_output.delete("1.0", tk.END)
-    desifruj_text_output.insert(tk.END, result)
+    full_text = ''.join(text.split())
+    max_block_size = len(str(n))
+    text_numbers = [int(full_text[i:i+max_block_size]) for i in range(0, len(full_text), max_block_size)]
+    
+    result = ''.join(chr(pow(c, d, n)) for c in text_numbers)
+    
+    # Zobrazení dešifrováné zprávy
+    desifruj_text_output.delete("1.0", tk.END)  # Zde použijeme správnou proměnnou
+    desifruj_text_output.insert(tk.END, result)  # a ne desifruj_text
 
 
+
+# Vytvoření hlavního okna GUI
 root = tk.Tk()
 root.title("RSA Šifrovací Nástroj")
 root.geometry("600x600")
@@ -108,12 +105,14 @@ root.geometry("600x600")
 title_label = tk.Label(root, text="RSA Šifra", font=("Helvetica", 18, "bold"))
 title_label.pack(pady=10)
 
+# Menu tlačítka a textového pole vedle sebe
 menu_frame = tk.Frame(root)
 menu_frame.pack(pady=10)
 
 vytvorKlic_button = tk.Button(menu_frame, text="Generovat Klíč", command=vytvorKlic)
 vytvorKlic_button.grid(row=0, column=0, padx=5)
 
+# Rámec pro klíče vedle tlačítka
 key_frame = tk.Frame(root)
 key_frame.pack(pady=10)
 
@@ -136,6 +135,7 @@ message_label.pack(pady=5)
 message_input = tk.Entry(root, width=40)
 message_input.pack(pady=5)
 
+# Rámec pro tlačítka "Zašifrovat" a "Dešifrovat"
 sifruj_frame = tk.Frame(root)
 sifruj_frame.pack(pady=10)
 
@@ -151,10 +151,12 @@ sifruj_label.pack(pady=5)
 sifruj_text = scrolledtext.ScrolledText(root, height=5, width=60)
 sifruj_text.pack(pady=5)
 
+# Pole pro dešifrování
 desifruj_label = tk.Label(root, text="Dešifrováná Zpráva:")
 desifruj_label.pack(pady=10)
 
 desifruj_text_output = scrolledtext.ScrolledText(root, height=5, width=60)
 desifruj_text_output.pack(pady=5)
 
+# Spuštění aplikace
 root.mainloop()
