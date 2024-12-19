@@ -34,17 +34,19 @@ def checkPrvo(n, k=40):
             return False
     return True
 
+
 def vytvorPrvo(bity):
     while True:
         cislo = random.getrandbits(bity)
-        cislo |= (1 << (bity - 1)) | 1  # Nastavení nejvyššího a nejnižšího bitu
+        cislo |= (1 << (bity - 1)) | 1
         if checkPrvo(cislo):
             return cislo
+
 
 def vytvorKlic():
     global e, d, n
 
-    bity = 1024  # Klíče mají pevně danou velikost 1024 bitů
+    bity = 1024
 
     while True:
         p, q = vytvorPrvo(bity // 2), vytvorPrvo(bity // 2)
@@ -95,6 +97,7 @@ def vyberSlozku():
     else:
         messagebox.showwarning("Varování", "Nebyla vybrána žádná složka!")
 
+
 def otevriSlozku(path):
     if platform.system() == "Windows":
         os.startfile(path)
@@ -102,6 +105,7 @@ def otevriSlozku(path):
         os.system(f"open {path}")
     else:
         os.system(f"xdg-open {path}")
+
 
 def vytvorKlice_ui():
     if not output_slozka:
@@ -122,7 +126,6 @@ def vytvorKlice_ui():
         f.write(f"RSA {pub_base64}")
 
     messagebox.showinfo("Úspěch", "Klíčový pár byl vygenerován a uložen.")
-
 
 
 def vyberSoubor():
@@ -148,7 +151,6 @@ def vyberSoubor():
 
         created_label.config(text=f"Datum vytvoření: {created_time}")
         modified_label.config(text=f"Datum poslední změny: {modified_time}")
-        accessed_label.config(text=f"Datum posledního přístupu: {accessed_time}")
 
     else:
         filename_label.config(text="---")
@@ -157,8 +159,6 @@ def vyberSoubor():
         extension_label.config(text="---")
         created_label.config(text="---")
         modified_label.config(text="---")
-        accessed_label.config(text="---")
-
 
 
 def podpis():
@@ -277,10 +277,6 @@ created_label.grid(row=4, column=1, padx=5)
 tk.Label(file_info_frame, text="Datum poslední změny:").grid(row=5, column=0, padx=5, sticky="e")
 modified_label = tk.Label(file_info_frame, text="---")
 modified_label.grid(row=5, column=1, padx=5)
-
-tk.Label(file_info_frame, text="Datum posledního přístupu:").grid(row=6, column=0, padx=5, sticky="e")
-accessed_label = tk.Label(file_info_frame, text="---")
-accessed_label.grid(row=6, column=1, padx=5)
 
 tk.Label(file_info_frame, text="Název souboru:").grid(row=0, column=0, padx=5, sticky="e")
 filename_label = tk.Label(file_info_frame, text="---")
