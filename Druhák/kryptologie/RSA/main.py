@@ -3,7 +3,7 @@ from tkinter import messagebox
 import random
 import math
 
-# Kontrola prvočísel - Miller-Rabinův test
+
 def checkPrvo(n, k=40):
     if n <= 1 or n % 2 == 0:
         return False
@@ -26,14 +26,14 @@ def checkPrvo(n, k=40):
             return False
     return True
 
-# Generování náhodného prvočísla v daném rozsahu
+
 def vytvorPrvo(min, max):
     while True:
         cislo = random.randint(min, max)
         if checkPrvo(cislo):
             return cislo
 
-# Generování veřejného a soukromého klíče
+
 def vytvorKlic():
     global e, d, n
 
@@ -43,7 +43,7 @@ def vytvorKlic():
         p, q = vytvorPrvo(min_cislice, max_cislice), vytvorPrvo(min_cislice, max_cislice)
         if p != q:
             n = p * q
-            if 10**12 <= n < 10**13:  # n má 13 číslic
+            if 10**12 <= n < 10**13:
                 break
 
     fi = (p - 1) * (q - 1)
@@ -53,9 +53,8 @@ def vytvorKlic():
         if math.gcd(e, fi) == 1:
             break
 
-    d = pow(e, -1, fi)  # Invertuje e mod fi
+    d = pow(e, -1, fi)
 
-    # Uložení klíčů do textových polí
     e_str = f"{e:013d}"
     d_str = f"{d:013d}"
 
@@ -65,101 +64,111 @@ def vytvorKlic():
     private_key_text.delete("1.0", tk.END)
     private_key_text.insert(tk.END, f"d: {d_str}\nn: {n}")
 
-# Rozdělení textu na bloky
+
 def text_to_blocks(text, block_size=7):
     return [text[i:i + block_size] for i in range(0, len(text), block_size)]
 
-# Spojení bloků zpět do textu
+
 def blocks_to_text(blocks):
     return ''.join(blocks)
 
 
-# Funkce pro šifrování zprávy (bloky po 3 znacích)
-def encrypt():
+def sifruj():
     try:
         n = int(public_key_text.get("1.0", tk.END).split("\n")[1].split(": ")[1])
         e = int(public_key_text.get("1.0", tk.END).split("\n")[0].split(": ")[1])
         text = message_entry.get()
 
-        # Rozdělení textu na malé bloky (3 znaky)
         block_size = 3
         blocks = text_to_blocks(text, block_size)
 
-        ciphertext = []
+        result = []
         for block in blocks:
-            block_value = int(''.join(f"{ord(char):03d}" for char in block))  # ASCII -> číslo
-            encrypted_block = pow(block_value, e, n)
-            ciphertext.append(encrypted_block)
+            block_value = int(''.join(f"{ord(char):03d}" for char in block))
+            sifrovany_block = pow(block_value, e, n)
+            result.append(sifrovany_block)
 
-        encrypted_text.delete("1.0", tk.END)
-        encrypted_text.insert(tk.END, " ".join(map(str, ciphertext)))
+        sifrovany_text.delete("1.0", tk.END)
+        sifrovany_text.insert(tk.END, " ".join(map(str, result)))
+
     except Exception as ex:
         messagebox.showerror("Chyba", f"Šifrování selhalo: {ex}")
 
 
-def decrypt():
+def desifruj():
     try:
         n = int(private_key_text.get("1.0", tk.END).split("\n")[1].split(": ")[1])
         d = int(private_key_text.get("1.0", tk.END).split("\n")[0].split(": ")[1])
-        ciphertext = list(map(int, encrypted_text.get("1.0", tk.END).split()))
+        text = list(map(int, sifrovany_text.get("1.0", tk.END).split()))
 
-        decrypted_blocks = []
-        for block in ciphertext:
-            decrypted_value = pow(block, d, n)
-            block_str = str(decrypted_value).zfill(18)  # 6 characters, each 3 digits
+        deisfrovany_blocks = []
+        for block in text:
+            deisfrovana_hodnota = pow(block, d, n)
+            block_str = str(deisfrovana_hodnota).zfill(18)
 
-            # Convert each 3-digit segment back to a character
             chars = [chr(int(block_str[i:i + 3])) for i in range(0, len(block_str), 3)]
             
-            # Join characters to form the decrypted block
-            decrypted_blocks.append(''.join(chars))
+            deisfrovany_blocks.append(''.join(chars))
 
-        plaintext = ''.join(decrypted_blocks)
+        result = ''.join(deisfrovany_blocks)
         
-        # Remove any potential null characters that might have been added as padding
-        plaintext = plaintext.replace('\x00', '')
+        result = result.replace('\x00', '')
 
-        decrypted_text.delete("1.0", tk.END)
-        decrypted_text.insert(tk.END, plaintext)
+        deisfrovany_text.delete("1.0", tk.END)
+        deisfrovany_text.insert(tk.END, result)
+
     except Exception as ex:
         messagebox.showerror("Chyba", f"Dešifrování selhalo: {ex}")
 
 
-# GUI
 root = tk.Tk()
 root.title("RSA Šifrovací Nástroj")
-root.geometry("600x700")
+root.geometry("600x450")
 
-# Nadpis
 tk.Label(root, text="RSA Šifra", font=("Helvetica", 16, "bold")).pack(pady=10)
 
-# Generování klíčů
 tk.Button(root, text="Generovat Klíče", command=vytvorKlic).pack()
 
-tk.Label(root, text="Veřejný Klíč:").pack()
-public_key_text = tk.Text(root, height=3, width=60)
-public_key_text.pack()
+# Frame pro klíče
+frame_keys = tk.Frame(root)
+frame_keys.pack(pady=5)
 
-tk.Label(root, text="Soukromý Klíč:").pack()
-private_key_text = tk.Text(root, height=3, width=60)
-private_key_text.pack()
+# Veřejný klíč
+tk.Label(frame_keys, text="Veřejný Klíč:").pack(side=tk.LEFT, padx=5)
+public_key_text = tk.Text(frame_keys, height=2, width=20)
+public_key_text.pack(side=tk.LEFT, padx=5)
 
-# Zpráva k šifrování
+# Soukromý klíč
+tk.Label(frame_keys, text="Soukromý Klíč:").pack(side=tk.LEFT, padx=5)
+private_key_text = tk.Text(frame_keys, height=2, width=20)
+private_key_text.pack(side=tk.LEFT, padx=5)
+
+frame_keys.pack(anchor="center")
+
+# Zpráva k zašifrování
 tk.Label(root, text="Zpráva k zašifrování:").pack()
 message_entry = tk.Entry(root, width=50)
 message_entry.pack()
 
-# Tlačítka šifrování a dešifrování
-tk.Button(root, text="Zašifrovat", command=encrypt).pack(pady=5)
-tk.Button(root, text="Dešifrovat", command=decrypt).pack()
+# Frame pro tlačítka "Zašifrovat" a "Dešifrovat"
+frame_buttons = tk.Frame(root)
+frame_buttons.pack(pady=5)
 
-# Výsledky
+# Tlačítka
+tk.Button(frame_buttons, text="Zašifrovat", command=sifruj).pack(side=tk.LEFT, padx=10)
+tk.Button(frame_buttons, text="Dešifrovat", command=desifruj).pack(side=tk.LEFT, padx=10)
+
+frame_buttons.pack(anchor="center")
+
+# Šifrovaná zpráva
 tk.Label(root, text="Šifrovaná Zpráva:").pack()
-encrypted_text = tk.Text(root, height=5, width=60)
-encrypted_text.pack()
+sifrovany_text = tk.Text(root, height=5, width=60)
+sifrovany_text.pack()
 
+# Dešifrovaná zpráva
 tk.Label(root, text="Dešifrovaná Zpráva:").pack()
-decrypted_text = tk.Text(root, height=5, width=60)
-decrypted_text.pack()
+deisfrovany_text = tk.Text(root, height=5, width=60)
+deisfrovany_text.pack()
 
 root.mainloop()
+

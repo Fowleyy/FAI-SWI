@@ -44,9 +44,8 @@ def uprava_textu(text):
             result += "XMEZERAX"
     result = result.upper()
 
-    # Kontrola počtu znaků
     if len(result) % 2 == 1:
-        result += 'X'  # Přidání 'X' na konec, pokud je počet znaků lichý
+        result += 'X'
 
     return result
 
@@ -108,10 +107,9 @@ def desifruj(tabulka, text):
     splittext = ["".join(text[i:i+2]) for i in range(0, len(text), 2)]
     result = ""
 
-    # Projdeme každou dvojici znaků
     for doubleChar in splittext:
-        if len(doubleChar) < 2:  # Zkontrolujeme, zda dvojice obsahuje alespoň 2 znaky
-            continue  # Přejdeme na další iteraci, pokud není dvojice úplná
+        if len(doubleChar) < 2:
+            continue
 
         pos1 = najdi_prvek(tabulka, doubleChar[0])
         pos2 = najdi_prvek(tabulka, doubleChar[1])
@@ -138,9 +136,8 @@ def desifruj(tabulka, text):
     result = result.replace("XNULAX", "0").replace("XCTYRIX", "4").replace("XPETX", "5")
     result = result.replace("XSESTX", "6").replace("XSEDMX", "7").replace("XOSMX", "8").replace("XDEVETX", "9")
 
-    # Odstranění 'X' na konci
     if result.endswith('X'):
-        result = result[:-1]  # Odstraní poslední znak 'X'
+        result = result[:-1]
 
     return result
 

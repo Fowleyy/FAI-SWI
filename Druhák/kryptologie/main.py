@@ -17,9 +17,15 @@ def spustit_adfgx():
 def spustit_adfgvx():
     subprocess.run(["python", "./ADVFGX/ADFGVX.py"])
 
+def spustit_rsa():
+    subprocess.run(["python", "./RSA/main.py"])
+
+def spustit_dsa():
+    subprocess.run(["python", "./DSA/main.py"])
+
 # Vytvoření hlavního okna
 okno = tk.Tk()
-okno.title("ADFG(V)X Šifra")
+okno.title("Kryptologie")
 okno.geometry("500x200")
 
 # Nadpis
@@ -44,6 +50,12 @@ tlacitko_adfgx.pack(side="left", padx=10)
 # Tlačítko pro spuštění ADFGVX.py
 tlacitko_adfgvx = tk.Button(tlacitka_frame, text="ADFGVX", command=spustit_adfgvx, font=("Helvetica", 12))
 tlacitko_adfgvx.pack(side="left", padx=10)
+
+tlacitko_rsa = tk.Button(tlacitka_frame, text="RSA", command=spustit_rsa, font=("Helvetica", 12))
+tlacitko_rsa.pack(side="left", padx=10)
+
+tlacitko_dsa = tk.Button(tlacitka_frame, text="DSA", command=spustit_dsa, font=("Helvetica", 12))
+tlacitko_dsa.pack(side="left", padx=10)
 
 # Spuštění GUI
 okno.mainloop()

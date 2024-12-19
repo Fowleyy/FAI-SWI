@@ -7,57 +7,59 @@ from tkinter import filedialog, messagebox
 import zipfile
 import math
 import platform
+import time
 
 output_slozka = None
 
 
-def vytvorPrvo(bits):
-    def checkPrvo(n, k=5):
-        if n <= 1 or n == 4:
+def checkPrvo(n, k=40):
+    if n <= 1 or n % 2 == 0:
+        return False
+
+    r, s = 0, n - 1
+    while s % 2 == 0:
+        r += 1
+        s //= 2
+
+    for _ in range(k):
+        a = random.randint(2, n - 2)
+        x = pow(a, s, n)
+        if x == 1 or x == n - 1:
+            continue
+        for _ in range(r - 1):
+            x = pow(x, 2, n)
+            if x == n - 1:
+                break
+        else:
             return False
-        if n <= 3:
-            return True
+    return True
 
-        def jeSlozene(a, d, n, s):
-            x = pow(a, d, n)
-            if x == 1 or x == n - 1:
-                return False
-            for _ in range(s - 1):
-                x = pow(x, 2, n)
-                if x == n - 1:
-                    return False
-            return True
-
-        s = 0
-        d = n - 1
-        while d % 2 == 0:
-            d //= 2
-            s += 1
-
-        for _ in range(5):
-            a = random.randint(2, n - 2)
-            if jeSlozene(a, d, n, s):
-                return False
-        return True
-
+def vytvorPrvo(bity):
     while True:
-        cislo = random.getrandbits(bits)
-        cislo |= (1 << bits - 1) | 1
+        cislo = random.getrandbits(bity)
+        cislo |= (1 << (bity - 1)) | 1  # Nastavení nejvyššího a nejnižšího bitu
         if checkPrvo(cislo):
             return cislo
 
+def vytvorKlic():
+    global e, d, n
 
-def vytvorKlice(p, q):
-    n = p * q
-    phi = (p - 1) * (q - 1)
+    bity = 1024  # Klíče mají pevně danou velikost 1024 bitů
 
-    e = random.randint(1, phi)
-    while math.gcd(e, phi) != 1:
-        e = random.randint(1, phi)
+    while True:
+        p, q = vytvorPrvo(bity // 2), vytvorPrvo(bity // 2)
+        if p != q:
+            n = p * q
+            break
 
-    d = pow(e, -1, phi)
+    fi = (p - 1) * (q - 1)
 
-    return ((e, n), (d, n))
+    while True:
+        e = random.randint(2, fi)
+        if math.gcd(e, fi) == 1:
+            break
+
+    d = pow(e, -1, fi)
 
 
 def int_to_bytes(x):
@@ -93,7 +95,6 @@ def vyberSlozku():
     else:
         messagebox.showwarning("Varování", "Nebyla vybrána žádná složka!")
 
-
 def otevriSlozku(path):
     if platform.system() == "Windows":
         os.startfile(path)
@@ -102,30 +103,27 @@ def otevriSlozku(path):
     else:
         os.system(f"xdg-open {path}")
 
-
 def vytvorKlice_ui():
     if not output_slozka:
         messagebox.showerror("Chyba", "Výstupní složka není nastavena. Vyberte složku.")
         return
 
-
-    p = vytvorPrvo(1024)
-    q = vytvorPrvo(1024)
-
-    public_key, private_key = vytvorKlice(p, q)
+    vytvorKlic()
 
     priv_path = os.path.join(output_slozka, "private_key.priv")
     pub_path = os.path.join(output_slozka, "public_key.pub")
 
     with open(priv_path, 'w') as f:
-        priv_base64 = base64.b64encode(str(private_key).encode()).decode()
+        priv_base64 = base64.b64encode(f"({d}, {n})".encode()).decode()
         f.write(f"RSA {priv_base64}")
 
     with open(pub_path, 'w') as f:
-        pub_base64 = base64.b64encode(str(public_key).encode()).decode()
+        pub_base64 = base64.b64encode(f"({e}, {n})".encode()).decode()
         f.write(f"RSA {pub_base64}")
 
     messagebox.showinfo("Úspěch", "Klíčový pár byl vygenerován a uložen.")
+
+
 
 def vyberSoubor():
     global vybranySoubor
@@ -133,14 +131,35 @@ def vyberSoubor():
     vybranySoubor = filedialog.askopenfilename()
     
     if vybranySoubor:
+
         filename_label.config(text=os.path.basename(vybranySoubor))
         filesize_label.config(text=f"{os.path.getsize(vybranySoubor)} bytes")
         filepath_label.config(text=vybranySoubor)
+
+
+        file_name, file_extension = os.path.splitext(vybranySoubor)
+        extension_label.config(text=f"{file_extension}")
+
+
+        soubor_info = os.stat(vybranySoubor)
+        created_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(soubor_info.st_ctime))
+        modified_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(soubor_info.st_mtime))
+        accessed_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(soubor_info.st_atime))
+
+        created_label.config(text=f"Datum vytvoření: {created_time}")
+        modified_label.config(text=f"Datum poslední změny: {modified_time}")
+        accessed_label.config(text=f"Datum posledního přístupu: {accessed_time}")
 
     else:
         filename_label.config(text="---")
         filesize_label.config(text="---")
         filepath_label.config(text="---")
+        extension_label.config(text="---")
+        created_label.config(text="---")
+        modified_label.config(text="---")
+        accessed_label.config(text="---")
+
+
 
 def podpis():
     if not vybranySoubor:
@@ -174,12 +193,7 @@ def podpis():
             sign_file.write(sign_content.encode())
 
     soubor_info = os.stat(vybranySoubor)
-    info_text = f"""Podepsaný soubor:
-Název: {os.path.basename(vybranySoubor)}
-Cesta: {vybranySoubor}
-Typ: {os.path.splitext(vybranySoubor)[1]}
-Velikost: {soubor_info.st_size} bytes"""
-    messagebox.showinfo("Informace o souboru", info_text)
+    messagebox.showinfo("Informace o souboru", "Soubor byl úspěšně podepsán.")
 
 
 def overeni():
@@ -218,7 +232,7 @@ def overeni():
 
 root = tk.Tk()
 root.title("DSA Šifra")
-root.geometry("600x450")
+root.geometry("600x500")
 
 tk.Label(root, text="DSA Šifra", font=("Helvetica", 32, "bold")).pack(pady=10)
 
@@ -237,6 +251,36 @@ tk.Button(button_frame, text="Generovat Klíčový Pár", command=vytvorKlice_ui
 
 file_info_frame = tk.Frame(root)
 file_info_frame.pack(pady=10)
+
+tk.Label(file_info_frame, text="Název souboru:").grid(row=0, column=0, padx=5, sticky="e")
+filename_label = tk.Label(file_info_frame, text="---")
+filename_label.grid(row=0, column=1, padx=5)
+
+tk.Label(file_info_frame, text="Velikost souboru:").grid(row=1, column=0, padx=5, sticky="e")
+filesize_label = tk.Label(file_info_frame, text="---")
+filesize_label.grid(row=1, column=1, padx=5)
+
+tk.Label(file_info_frame, text="Cesta k souboru:").grid(row=2, column=0, padx=5, sticky="e")
+filepath_label = tk.Label(file_info_frame, text="---")
+filepath_label.grid(row=2, column=1, padx=5)
+
+# Nový label pro příponu souboru
+tk.Label(file_info_frame, text="Přípona souboru:").grid(row=3, column=0, padx=5, sticky="e")
+extension_label = tk.Label(file_info_frame, text="---")
+extension_label.grid(row=3, column=1, padx=5)
+
+# Další labely pro data souboru
+tk.Label(file_info_frame, text="Datum vytvoření:").grid(row=4, column=0, padx=5, sticky="e")
+created_label = tk.Label(file_info_frame, text="---")
+created_label.grid(row=4, column=1, padx=5)
+
+tk.Label(file_info_frame, text="Datum poslední změny:").grid(row=5, column=0, padx=5, sticky="e")
+modified_label = tk.Label(file_info_frame, text="---")
+modified_label.grid(row=5, column=1, padx=5)
+
+tk.Label(file_info_frame, text="Datum posledního přístupu:").grid(row=6, column=0, padx=5, sticky="e")
+accessed_label = tk.Label(file_info_frame, text="---")
+accessed_label.grid(row=6, column=1, padx=5)
 
 tk.Label(file_info_frame, text="Název souboru:").grid(row=0, column=0, padx=5, sticky="e")
 filename_label = tk.Label(file_info_frame, text="---")
