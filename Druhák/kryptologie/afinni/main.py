@@ -25,6 +25,7 @@ def editText(vstup):
     result = result.replace(" ", "XMEZERAX")
     return result
 
+
 def sifrovani(text, a, b):
     if gcd(a, 26) != 1:
         raise ValueError("Hodnoty klíčů musí být nesoudělné s 26.")
@@ -39,6 +40,7 @@ def sifrovani(text, a, b):
             result += source[r]
     
     return ' '.join([result[i:i+5] for i in range(0, len(result), 5)])
+
 
 def desifrovani(text, a, b, vstup):
     if gcd(a, 26) != 1:
@@ -59,9 +61,8 @@ def desifrovani(text, a, b, vstup):
     result = result.replace("XCTYRIX", "4").replace("XPETX", "5").replace("XSESTX", "6")
     result = result.replace("XSEDMX", "7").replace("XOSMX", "8").replace("XDEVETX", "9")
 
-    
-
     return result
+
 
 def zpracuj_text():
     vstup = text_entry.get()

@@ -46,10 +46,9 @@ def vytvorPrvo(bity):
 def vytvorKlic():
     global e, d, n
 
-    bity = 1024
 
     while True:
-        p, q = vytvorPrvo(bity // 2), vytvorPrvo(bity // 2)
+        p, q = vytvorPrvo(1024), vytvorPrvo(1024)
         if p != q:
             n = p * q
             break
