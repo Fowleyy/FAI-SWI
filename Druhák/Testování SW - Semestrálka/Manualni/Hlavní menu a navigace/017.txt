@@ -1,0 +1,21 @@
+Testovací sada: 01
+Id -> 017
+Název -> Zobrazení aktuálních zpráv
+
+Stručný popis -> Ověření, že sekce „Aktuální zprávy“ na úvodní stránce zobrazuje nejnovější informace
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. Na úvodní stránce najdu sekci „Aktuální zprávy“.
+	2. Ověřím, že jsou zobrazeny nejnovější zprávy s datem zveřejnění.
+	3. Kliknu na jednu z aktuálních zpráv a ověřím, že se otevře správná stránka s podrobnostmi.
+	
+Vstupní data: Sekce „Aktuální zprávy“
+	
+Očekávaný výsledek -> Sekce zobrazuje aktuální zprávy s datem zveřejnění a odkazy vedou na správné podstránky s podrobnostmi.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

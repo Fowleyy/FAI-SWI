@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-05-13T09:38:53.441255" rpa="false" schemaversion="5">
+<suite id="s1" name="TS 046" source="C:\Users\Daniel\Desktop\testování\Automatické\TuristaAVolnyCas\046\TS_046.robot">
+<test id="s1-t1" name="Pre-conditions" line="11">
+<kw name="Otevri Prohlizec Jdi na URL a Zkontroluj" owner="Keywords">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-13T09:38:53.762845" level="WARN">exexcutable_path is being deprecated. Please use service to configure the driver's executable_path as per documentation.</msg>
+<msg time="2025-05-13T09:38:53.763021" level="INFO">Opening browser 'Chrome' to base url 'https://pozlovice.cz/'.</msg>
+<arg>${URL}</arg>
+<arg>${Browser}</arg>
+<arg>executable_path=C:\\Users\\Daniel\\Desktop\\testování\\chromedriver.exe</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-13T09:38:53.762591" elapsed="6.154899"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-13T09:38:59.918066" elapsed="0.069148"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${KontrolovanyElement}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-13T09:38:59.987540" elapsed="0.188192"/>
+</kw>
+<arg>${Browser_Chrome}</arg>
+<arg>${URL_MainPage}</arg>
+<arg>${Button_Turista}</arg>
+<status status="PASS" start="2025-05-13T09:38:53.761914" elapsed="6.414006"/>
+</kw>
+<status status="PASS" start="2025-05-13T09:38:53.761298" elapsed="6.415021"/>
+</test>
+<test id="s1-t2" name="Kontrola tlacitka" line="14">
+<kw name="Zaloguj a Zkontroluj" owner="Keywords">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-05-13T09:39:00.261795" level="INFO">Element '//a[@href='/obec/turista-a-volny-cas']' is displayed.</msg>
+<arg>${ButtonTurista}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-13T09:39:00.178340" elapsed="0.083571"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-13T09:39:00.262379" level="INFO">Clicking element '//a[@href='/obec/turista-a-volny-cas']'.</msg>
+<arg>${ButtonTurista}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-13T09:39:00.262109" elapsed="0.252480"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2025-05-13T09:39:01.551727" level="INFO">Current location contains 'https://pozlovice.cz/obec/turista-a-volny-cas'.</msg>
+<arg>${StrankaTurista}</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2025-05-13T09:39:00.514934" elapsed="1.037007"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-05-13T09:39:01.583865" level="INFO">Element '//div[@class='section-content-main-text']//a[contains(text(),'Autovláček')]' is displayed.</msg>
+<arg>${ButtonVlacek}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-13T09:39:01.552318" elapsed="0.031704"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-13T09:39:01.584809" level="INFO">Clicking element '//div[@class='section-content-main-text']//a[contains(text(),'Autovláček')]'.</msg>
+<arg>${ButtonVlacek}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-13T09:39:01.584352" elapsed="0.312365"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2025-05-13T09:39:01.900836" level="INFO">Current location contains 'https://pozlovice.cz/obec/autovlacek'.</msg>
+<arg>${StrankaVlacek}</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2025-05-13T09:39:01.896985" elapsed="0.004003"/>
+</kw>
+<arg>${Button_Turista}</arg>
+<arg>${URL_Finish}</arg>
+<arg>${Button_Vlacek}</arg>
+<arg>${URL_Finish2}</arg>
+<status status="PASS" start="2025-05-13T09:39:00.177618" elapsed="1.723569"/>
+</kw>
+<status status="PASS" start="2025-05-13T09:39:00.176859" elapsed="1.724650"/>
+</test>
+<test id="s1-t3" name="Post-conditions" line="17">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-05-13T09:39:01.902927" elapsed="2.314627"/>
+</kw>
+<status status="PASS" start="2025-05-13T09:39:01.902016" elapsed="2.315871"/>
+</test>
+<status status="PASS" start="2025-05-13T09:38:53.442774" elapsed="10.775612"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="TS 046" id="s1" pass="3" fail="0" skip="0">TS 046</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-05-13T09:38:53.759150" level="WARN">Imported resource file 'C:\Users\Daniel\Desktop\testování\Automatické\TuristaAVolnyCas\046\Inputs.robot' is empty.</msg>
+<msg time="2025-05-13T09:38:53.762845" level="WARN">exexcutable_path is being deprecated. Please use service to configure the driver's executable_path as per documentation.</msg>
+</errors>
+</robot>

@@ -1,0 +1,23 @@
+Testovací sada: 01
+Id -> 018
+Název -> Přístup k úřední desce
+
+Stručný popis -> Ověření funkčnosti odkazu na „Úřední desku“ z úvodní stránky
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. Na úvodní stránce najdu sekci „Úřední deska“.
+	2. Kliknu na odkaz „Stanovení přechodné úpravy provozu č. 24/2025“.
+	3. Ověřím, že se otevře stránka s dokumentem.
+	4. Kliknu na PDF soubor
+	5. Soubor se otevře na nové záložce
+	
+Vstupní data: Odkaz „Další zprávy na ÚD“
+	
+Očekávaný výsledek -> Otevře se stránka s úplným seznamem dokumentů na úřední desce.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

@@ -1,0 +1,48 @@
+﻿@page "/students/edit/{id:int}"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>Editace studenta</PageTitle>
+<h3>Editace studenta</h3>
+
+<!-- Case insensitive Id == id -->
+@if (Student is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm Model="Student" FormName="EditStudent" OnSubmit="Submit" Enhance>
+        <div class="mb-3">
+            <label class="form-label" for="jmeno">Jmeno</label>
+            <InputText class="form-control" id="jmeno" @bind-Value="Student.Jmeno" />
+        </div>
+        <div class="mb3">
+            <label for="studuje" class="form-check-label">Studuje</label>
+            <InputCheckbox id="studuje" class="form-check" @bind-Value="Student.Studuje" />
+
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-primary" href="students">Cancel</button>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    public Student? Student { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Student = await Http.GetFromJsonAsync<Student>($"/students/{Id}");
+    }
+
+    private async Task Submit()
+    {
+        await Http.PutAsJsonAsync($"/students/{Student?.StudentId}", Student);
+        Navigation.NavigateTo("/students");
+    }
+
+}

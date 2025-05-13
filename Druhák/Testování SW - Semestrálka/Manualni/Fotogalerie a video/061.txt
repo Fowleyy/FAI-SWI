@@ -1,0 +1,21 @@
+Testovací sada: 06
+Id -> 061
+Název -> Přístup k fotogalerii
+
+Stručný popis -> Ověření dostupnosti sekce „Fotogalerie“
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu kliknu na možnost „Fotogalerie a video“.
+	2. V podnabídce kliknu na „Fotogalerie“.
+	3. Zkontroluju, že se mi otevřela celá fotogalerie
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Zobrazí se stránka s fotogaleriemi z různých akcí v Pozlovicích.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

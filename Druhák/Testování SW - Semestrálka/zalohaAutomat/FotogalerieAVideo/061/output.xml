@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-05-13T14:44:22.097804" rpa="false" schemaversion="5">
+<suite id="s1" name="TS 061" source="C:\Users\Daniel\Desktop\testování\Automaticke\FotogalerieAVideo\061\TS_061.robot">
+<test id="s1-t1" name="Pre-conditions" line="11">
+<kw name="Otevri Prohlizec Jdi na URL a Zkontroluj" owner="Keywords">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-05-13T14:44:22.378479" level="INFO">${service} = &lt;selenium.webdriver.chrome.service.Service object at 0x00000222769B2120&gt;</msg>
+<var>${service}</var>
+<arg>sys.modules['selenium.webdriver.chrome.service'].Service('C:/Users/Daniel/Desktop/testování/chromedriver.exe')</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-05-13T14:44:22.377839" elapsed="0.000685"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2025-05-13T14:44:22.378883" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg time="2025-05-13T14:44:23.576510" level="INFO">${driver} = 1</msg>
+<var>${driver}</var>
+<arg>Chrome</arg>
+<arg>service=${service}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2025-05-13T14:44:22.378689" elapsed="1.197893"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-05-13T14:44:23.577121" level="INFO">Opening url 'https://pozlovice.cz/'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-05-13T14:44:23.576831" elapsed="4.221671"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-13T14:44:27.798718" elapsed="0.065157"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${KontrolovanyElement}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-13T14:44:27.864234" elapsed="0.063943"/>
+</kw>
+<arg>${Browser_Chrome}</arg>
+<arg>${URL_MainPage}</arg>
+<arg>${Button_Foto}</arg>
+<status status="PASS" start="2025-05-13T14:44:22.377094" elapsed="5.551254"/>
+</kw>
+<status status="PASS" start="2025-05-13T14:44:22.376394" elapsed="5.552379"/>
+</test>
+<test id="s1-t2" name="Ověření dostupnosti sekce „Fotogalerie“" line="14">
+<kw name="Zaloguj a Zkontroluj" owner="Keywords">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-05-13T14:44:28.007039" level="INFO">Element '//a[normalize-space()='Fotogalerie a videa']' is displayed.</msg>
+<arg>${ButtonFoto}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-13T14:44:27.931463" elapsed="0.075713"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-13T14:44:28.007707" level="INFO">Clicking element '//a[normalize-space()='Fotogalerie a videa']'.</msg>
+<arg>${ButtonFoto}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-13T14:44:28.007410" elapsed="0.344915"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2025-05-13T14:44:28.480358" level="INFO">Current location contains 'https://pozlovice.cz/obec/fotogalerie-a-video'.</msg>
+<arg>${StrankaFoto}</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2025-05-13T14:44:28.352587" elapsed="0.127917"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-05-13T14:44:28.502258" level="INFO">Element '//a[contains(text(),'Fotogalerie')]' is displayed.</msg>
+<arg>${ButtonFoto2}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-13T14:44:28.480786" elapsed="0.021601"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-13T14:44:28.502907" level="INFO">Clicking element '//a[contains(text(),'Fotogalerie')]'.</msg>
+<arg>${ButtonFoto2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-13T14:44:28.502613" elapsed="1.901247"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2025-05-13T14:44:30.406545" level="INFO">Current location contains 'https://pozlovice.cz/obec/fotogalerie'.</msg>
+<arg>${StrankaFoto2}</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2025-05-13T14:44:30.404049" elapsed="0.002572"/>
+</kw>
+<arg>${Button_Foto}</arg>
+<arg>${URL_Finish}</arg>
+<arg>${Button_Foto2}</arg>
+<arg>${URL_Finish2}</arg>
+<status status="PASS" start="2025-05-13T14:44:27.930969" elapsed="2.475746"/>
+</kw>
+<status status="PASS" start="2025-05-13T14:44:27.929675" elapsed="2.477255"/>
+</test>
+<test id="s1-t3" name="Post-conditions" line="17">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-05-13T14:44:30.407518" elapsed="2.301993"/>
+</kw>
+<status status="PASS" start="2025-05-13T14:44:30.407241" elapsed="2.302568"/>
+</test>
+<status status="PASS" start="2025-05-13T14:44:22.099284" elapsed="10.611086"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="TS 061" id="s1" pass="3" fail="0" skip="0">TS 061</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,21 @@
+Testovací sada: 06
+Id -> 062
+Název -> Zobrazení konkrétní fotogalerie
+
+Stručný popis -> Ověření funkčnosti zobrazení konkrétní fotogalerie
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. Na stránce „Fotogalerie“ vyberu konkrétní fotogalerii (např. „Stavění máje“).
+	2. Kliknu na název nebo obrázek fotogalerie.
+	3. Zkontroluju, že se fotografie otevřela.
+	
+Vstupní data: název nebo obrázek fotogalerie
+	
+Očekávaný výsledek -> Zobrazí se stránka s fotografiemi z vybrané akce.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

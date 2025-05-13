@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-05-12T12:20:19.898101" rpa="false" schemaversion="5">
+<suite id="s1" name="TS 006" source="C:\Users\Daniel\Desktop\testování\Automatické\HlavniMenu_Navigace\016\TS_006.robot">
+<test id="s1-t1" name="Pre-conditions" line="11">
+<kw name="Otevri Prohlizec Jdi na URL a Zkontroluj" owner="Keywords">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-12T12:20:20.174273" level="WARN">exexcutable_path is being deprecated. Please use service to configure the driver's executable_path as per documentation.</msg>
+<msg time="2025-05-12T12:20:20.174445" level="INFO">Opening browser 'Chrome' to base url 'https://pozlovice.cz/'.</msg>
+<arg>${URL}</arg>
+<arg>${Browser}</arg>
+<arg>executable_path=C:\\Users\\Daniel\\Desktop\\testování\\chromedriver.exe</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-12T12:20:20.174002" elapsed="5.144695"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-12T12:20:25.318975" elapsed="0.050661"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${KontrolovanyElement}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-12T12:20:25.370043" elapsed="0.096875"/>
+</kw>
+<arg>${Browser_Chrome}</arg>
+<arg>${URL_MainPage}</arg>
+<arg>${Button_Foto}</arg>
+<status status="PASS" start="2025-05-12T12:20:20.173248" elapsed="5.293840"/>
+</kw>
+<status status="PASS" start="2025-05-12T12:20:20.172590" elapsed="5.294840"/>
+</test>
+<test id="s1-t2" name="Kontrola tlacitka" line="14">
+<kw name="Zaloguj a Zkontroluj" owner="Keywords">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-05-12T12:20:25.518675" level="INFO">Element '//a[normalize-space()='Fotogalerie a videa']' is displayed.</msg>
+<arg>${ButtonFoto}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-12T12:20:25.469224" elapsed="0.049574"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-12T12:20:25.519245" level="INFO">Clicking element '//a[normalize-space()='Fotogalerie a videa']'.</msg>
+<arg>${ButtonFoto}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-12T12:20:25.518997" elapsed="0.253443"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2025-05-12T12:20:25.873943" level="INFO">Current location contains 'https://pozlovice.cz/obec/fotogalerie-a-video'.</msg>
+<arg>${StrankaFoto}</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2025-05-12T12:20:25.772689" elapsed="0.101384"/>
+</kw>
+<arg>${Button_Foto}</arg>
+<arg>${URL_Finish}</arg>
+<status status="PASS" start="2025-05-12T12:20:25.468817" elapsed="0.405379"/>
+</kw>
+<status status="PASS" start="2025-05-12T12:20:25.468097" elapsed="0.406392"/>
+</test>
+<test id="s1-t3" name="Post-conditions" line="17">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-05-12T12:20:25.875215" elapsed="2.273066"/>
+</kw>
+<status status="PASS" start="2025-05-12T12:20:25.874873" elapsed="2.274009"/>
+</test>
+<status status="PASS" start="2025-05-12T12:20:19.899488" elapsed="8.250148"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="TS 006" id="s1" pass="3" fail="0" skip="0">TS 006</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-05-12T12:20:20.169701" level="WARN">Imported resource file 'C:\Users\Daniel\Desktop\testování\Automatické\HlavniMenu_Navigace\016\Values.robot' is empty.</msg>
+<msg time="2025-05-12T12:20:20.170497" level="WARN">Imported resource file 'C:\Users\Daniel\Desktop\testování\Automatické\HlavniMenu_Navigace\016\Inputs.robot' is empty.</msg>
+<msg time="2025-05-12T12:20:20.174273" level="WARN">exexcutable_path is being deprecated. Please use service to configure the driver's executable_path as per documentation.</msg>
+</errors>
+</robot>

@@ -1,0 +1,19 @@
+Testovací sada: 02
+Id -> 025
+Název -> Občasník
+
+Stručný popis -> Ověření dostupnosti obecního zpravodaje
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V sekci "Informuje" kliknu na podsekci "Občasník".
+	
+Vstupní data: sekce Občan
+	
+Očekávaný výsledek -> Zobrazí se stránka s odkazy na vydání obecního zpravodaje.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

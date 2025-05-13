@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Daniel\\Documents\\GitHub\\C-FAI\\Druh\u00E1k\\Aplika\u010Dn\u00ED frameworky\\Knihovna.testy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C8548627-9487-494F-85A3-5307D89BDB24}|Knihovna.testy\\Knihovna.testy.csproj|c:\\users\\daniel\\documents\\github\\c-fai\\druh\u00E1k\\aplika\u010Dn\u00ED frameworky\\knihovna.testy\\knihovna.testy\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8548627-9487-494F-85A3-5307D89BDB24}|Knihovna.testy\\Knihovna.testy.csproj|solutionrelative:knihovna.testy\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\Daniel\\Documents\\GitHub\\C-FAI\\Druh\u00E1k\\Aplika\u010Dn\u00ED frameworky\\Knihovna.testy\\Knihovna.testy\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "Knihovna.testy\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\Daniel\\Documents\\GitHub\\C-FAI\\Druh\u00E1k\\Aplika\u010Dn\u00ED frameworky\\Knihovna.testy\\Knihovna.testy\\UnitTest1.cs",
+              "RelativeToolTip": "Knihovna.testy\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T13:24:27.572Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

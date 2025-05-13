@@ -1,0 +1,19 @@
+Testovací sada: 01
+Id -> 012
+Název -> Spolky a instituce
+
+Stručný popis -> Ověření funkčnosti odkazu na sekci "Spolky a instituce"
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. Kliknu na položku hlavního menu "Spolky a instituce".
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek ->  Zobrazí se stránka se seznamem spolků a institucí v Pozlovicích.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

@@ -1,0 +1,19 @@
+Testovací sada: 01
+Id -> 016
+Název -> Fotogalerie a videa
+
+Stručný popis -> Ověření funkčnosti odkazu na sekci "Fotogalerie a Videa"
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. Kliknu na položku hlavního menu "Fotogalerie a videa".
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Otevře se stránka s možností nahlédnout do fotogalerie městyse.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

@@ -1,0 +1,21 @@
+Testovací sada: 03
+Id -> 035
+Název -> Farnost Pozlovice
+
+Stručný popis -> Ověření dostupnosti sekce „Farnost Pozlovice“
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu kliknu na možnost „Spolky a instituce“.
+	2. V podnabídce kliknu na „Farnost Pozlovice“.
+	3. Kliknu na stránky farnosti a zkontroluju, že se mi otevřeli.
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Zobrazí se stránka s informacemi o místní farnosti.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

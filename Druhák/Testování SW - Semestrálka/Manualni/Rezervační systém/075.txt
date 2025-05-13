@@ -1,0 +1,24 @@
+Testovací sada: 07
+Id -> 075
+Název -> Registrace s nevyplněným jménem.
+
+Stručný popis ->  Ověření kontroly proti nezadání jména
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu vyberu možnost "Rezervační systém"
+	2. V rezervačním systému kliknu na odkaz "https://pozlovice.rezervace.online".
+	3. Zkontroluju správné přesměrování.
+	4. Kliknu na tlačítko registrace.
+	5. Vyplním údaje, bez zadaného jména.
+	6. Zkontroluju, že tlačítko registrovat má tag "Disabled" takže se nejde zaregistrovat.
+	
+Vstupní data: email, heslo, jméno, příjmení, telefonní číslo
+	
+Očekávaný výsledek -> Nepůjde se zaregistrovat.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

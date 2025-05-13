@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-05-12T14:27:34.759489" rpa="false" schemaversion="5">
+<suite id="s1" name="TS 055" source="C:\Users\Daniel\Desktop\testování\Automatické\UbytovaniSluzby\055\TS_055.robot">
+<test id="s1-t1" name="Pre-conditions" line="11">
+<kw name="Otevri Prohlizec Jdi na URL a Zkontroluj" owner="Keywords">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:35.055136" level="WARN">exexcutable_path is being deprecated. Please use service to configure the driver's executable_path as per documentation.</msg>
+<msg time="2025-05-12T14:27:35.055409" level="INFO">Opening browser 'Chrome' to base url 'https://pozlovice.cz/'.</msg>
+<arg>${URL}</arg>
+<arg>${Browser}</arg>
+<arg>executable_path=C:\\Users\\Daniel\\Desktop\\testování\\chromedriver.exe</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-12T14:27:35.054855" elapsed="5.090249"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-12T14:27:40.145420" elapsed="0.059259"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${KontrolovanyElement}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-12T14:27:40.204966" elapsed="0.073228"/>
+</kw>
+<arg>${Browser_Chrome}</arg>
+<arg>${URL_MainPage}</arg>
+<arg>${Button_Sluzby}</arg>
+<status status="PASS" start="2025-05-12T14:27:35.054129" elapsed="5.224288"/>
+</kw>
+<status status="PASS" start="2025-05-12T14:27:35.053449" elapsed="5.225513"/>
+</test>
+<test id="s1-t2" name="Kontrola tlacitka" line="14">
+<kw name="Zaloguj a Zkontroluj" owner="Keywords">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:40.435516" level="INFO">Element '//a[@href='/obec/ubytovani-a-sluzby']' is displayed.</msg>
+<arg>${ButtonSluzby}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-12T14:27:40.282412" elapsed="0.153219"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:40.436079" level="INFO">Clicking element '//a[@href='/obec/ubytovani-a-sluzby']'.</msg>
+<arg>${ButtonSluzby}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-12T14:27:40.435830" elapsed="0.176441"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:40.729511" level="INFO">Current location contains 'https://pozlovice.cz/obec/ubytovani-a-sluzby'.</msg>
+<arg>${StrankaSluzby}</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2025-05-12T14:27:40.612529" elapsed="0.117135"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:40.749686" level="INFO">Element '//div[@class='tag-menu pills']//a[normalize-space()='Potraviny']' is displayed.</msg>
+<arg>${ButtonRest1}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-12T14:27:40.729922" elapsed="0.019901"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:40.750508" level="INFO">Clicking element '//div[@class='tag-menu pills']//a[normalize-space()='Potraviny']'.</msg>
+<arg>${ButtonRest1}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-12T14:27:40.750077" elapsed="0.353472"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:41.181714" level="INFO">Current location contains 'https://pozlovice.cz/firmy-sluzby/potraviny'.</msg>
+<arg>${StrankaRest1}</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.103802" elapsed="0.078064"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:41.211424" level="INFO">Element '//h3[contains(text(),'CeliakShop - Kubíčková Karla')]' is displayed.</msg>
+<arg>${ButtonRest2}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.182326" elapsed="0.029215"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:41.212137" level="INFO">Clicking element '//h3[contains(text(),'CeliakShop - Kubíčková Karla')]'.</msg>
+<arg>${ButtonRest2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.211760" elapsed="0.207753"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:41.425104" level="INFO">Current location contains 'https://pozlovice.cz/spol/celiakshop-kubickova-karla'.</msg>
+<arg>${StrankaRest2}</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.419866" elapsed="0.005380"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:41.444904" level="INFO">Element '//a[normalize-space()='www.celiakshop.cz']' is displayed.</msg>
+<arg>${ButtonRest3}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.425472" elapsed="0.019549"/>
+</kw>
+<kw name="Get Window Handles" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:41.446980" level="INFO">${OldWindows} = ['C4AC6AA74D49386233D3ED5C254C5C7E']</msg>
+<var>${OldWindows}</var>
+<doc>Returns all child window handles of the selected browser as a list.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.445229" elapsed="0.001796"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:41.447452" level="INFO">Clicking element '//a[normalize-space()='www.celiakshop.cz']'.</msg>
+<arg>${ButtonRest3}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.447197" elapsed="0.111606"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Window Handle Should Change" owner="Keywords">
+<kw name="Get Window Handles" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:41.576413" level="INFO">${CurrentWindows} = ['C4AC6AA74D49386233D3ED5C254C5C7E', 'DEAC004FEBFA96B19D1B34ABA0510987']</msg>
+<var>${CurrentWindows}</var>
+<doc>Returns all child window handles of the selected browser as a list.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.560301" elapsed="0.016185"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2025-05-12T14:27:41.576969" level="INFO">Length is 1.</msg>
+<msg time="2025-05-12T14:27:41.577081" level="INFO">${old_len} = 1</msg>
+<var>${old_len}</var>
+<arg>${OldWindows}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.576716" elapsed="0.000402"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2025-05-12T14:27:41.577433" level="INFO">Length is 2.</msg>
+<msg time="2025-05-12T14:27:41.577505" level="INFO">${new_len} = 2</msg>
+<var>${new_len}</var>
+<arg>${CurrentWindows}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.577296" elapsed="0.000235"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${new_len} &gt; ${old_len}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.577644" elapsed="0.000279"/>
+</kw>
+<arg>${OldWindows}</arg>
+<status status="PASS" start="2025-05-12T14:27:41.559763" elapsed="0.018262"/>
+</kw>
+<arg>10x</arg>
+<arg>1s</arg>
+<arg>Window Handle Should Change</arg>
+<arg>${OldWindows}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.559147" elapsed="0.018943"/>
+</kw>
+<kw name="Get Window Handles" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:41.583029" level="INFO">${AllWindows} = ['C4AC6AA74D49386233D3ED5C254C5C7E', 'DEAC004FEBFA96B19D1B34ABA0510987']</msg>
+<var>${AllWindows}</var>
+<doc>Returns all child window handles of the selected browser as a list.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.578228" elapsed="0.004908"/>
+</kw>
+<kw name="Get New Window Handle" owner="Keywords">
+<for flavor="IN">
+<iter>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${handle}' not in ${OldHandles}</arg>
+<arg>Return From Keyword</arg>
+<arg>${handle}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.585004" elapsed="0.000326"/>
+</kw>
+<var name="${handle}">C4AC6AA74D49386233D3ED5C254C5C7E</var>
+<status status="PASS" start="2025-05-12T14:27:41.584257" elapsed="0.001159"/>
+</iter>
+<iter>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Return From Keyword" owner="BuiltIn">
+<msg time="2025-05-12T14:27:41.586139" level="INFO">Returning from the enclosing user keyword.</msg>
+<arg>${handle}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.586038" elapsed="0.000212"/>
+</kw>
+<arg>'${handle}' not in ${OldHandles}</arg>
+<arg>Return From Keyword</arg>
+<arg>${handle}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.585715" elapsed="0.000614"/>
+</kw>
+<var name="${handle}">DEAC004FEBFA96B19D1B34ABA0510987</var>
+<status status="PASS" start="2025-05-12T14:27:41.585574" elapsed="0.000820"/>
+</iter>
+<var>${handle}</var>
+<value>@{NewHandles}</value>
+<status status="PASS" start="2025-05-12T14:27:41.584028" elapsed="0.002435"/>
+</for>
+<msg time="2025-05-12T14:27:41.586664" level="INFO">${NewWindow} = DEAC004FEBFA96B19D1B34ABA0510987</msg>
+<var>${NewWindow}</var>
+<arg>${OldWindows}</arg>
+<arg>${AllWindows}</arg>
+<status status="PASS" start="2025-05-12T14:27:41.583580" elapsed="0.003119"/>
+</kw>
+<kw name="Switch Window" owner="SeleniumLibrary">
+<arg>${NewWindow}</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.586853" elapsed="0.058214"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2025-05-12T14:27:42.345883" level="INFO">Current location contains 'https://www.celiakshop.cz/'.</msg>
+<arg>${StrankaRest3}</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2025-05-12T14:27:41.645445" elapsed="0.700568"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-05-12T14:27:42.346227" elapsed="2.277012"/>
+</kw>
+<arg>${Button_Sluzby}</arg>
+<arg>${URL_Finish1}</arg>
+<arg>${Button_Rest1}</arg>
+<arg>${URL_Finish2}</arg>
+<arg>${Button_Rest2}</arg>
+<arg>${URL_Finish3}</arg>
+<arg>${Button_Rest3}</arg>
+<arg>${URL_Finish4}</arg>
+<status status="PASS" start="2025-05-12T14:27:40.281453" elapsed="4.341947"/>
+</kw>
+<status status="PASS" start="2025-05-12T14:27:40.280330" elapsed="4.343373"/>
+</test>
+<test id="s1-t3" name="Post-conditions" line="17">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-05-12T14:27:44.624397" elapsed="0.000128"/>
+</kw>
+<status status="PASS" start="2025-05-12T14:27:44.624096" elapsed="0.000552"/>
+</test>
+<status status="PASS" start="2025-05-12T14:27:34.760900" elapsed="9.864160"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="TS 055" id="s1" pass="3" fail="0" skip="0">TS 055</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-05-12T14:27:35.055136" level="WARN">exexcutable_path is being deprecated. Please use service to configure the driver's executable_path as per documentation.</msg>
+</errors>
+</robot>

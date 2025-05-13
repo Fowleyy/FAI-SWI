@@ -1,0 +1,19 @@
+Testovací sada: 02
+Id -> 026
+Název -> Smuteční deska
+
+Stručný popis -> Ověření dostupnosti sekce "Smuteční deska"
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V sekci "Informuje" kliknu na podsekci "Smuteční deska".
+	
+Vstupní data: sekce Občan
+	
+Očekávaný výsledek -> Zobrazí se stránka ze smuteční deskou.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

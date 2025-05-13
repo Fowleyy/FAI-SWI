@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-05-12T13:02:12.722776" rpa="false" schemaversion="5">
+<suite id="s1" name="TS 009" source="C:\Users\Daniel\Desktop\testování\Automatické\HlavniMenu_Navigace\019\TS_009.robot">
+<test id="s1-t1" name="Pre-conditions" line="11">
+<kw name="Otevri Prohlizec Jdi na URL a Zkontroluj" owner="Keywords">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-05-12T13:02:13.016868" level="WARN">exexcutable_path is being deprecated. Please use service to configure the driver's executable_path as per documentation.</msg>
+<msg time="2025-05-12T13:02:13.017093" level="INFO">Opening browser 'Chrome' to base url 'https://pozlovice.cz/'.</msg>
+<arg>${URL}</arg>
+<arg>${Browser}</arg>
+<arg>executable_path=C:\\Users\\Daniel\\Desktop\\testování\\chromedriver.exe</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-05-12T13:02:13.016554" elapsed="12.183142"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.199968" elapsed="0.046764"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${KontrolovanyElement}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.246983" elapsed="0.081031"/>
+</kw>
+<arg>${Browser_Chrome}</arg>
+<arg>${URL_MainPage}</arg>
+<arg>${Button_Zprava}</arg>
+<status status="PASS" start="2025-05-12T13:02:13.015809" elapsed="12.312437"/>
+</kw>
+<status status="PASS" start="2025-05-12T13:02:13.015132" elapsed="12.313583"/>
+</test>
+<test id="s1-t2" name="Kontrola tlacitka" line="14">
+<kw name="Zaloguj a Zkontroluj" owner="Keywords">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-05-12T13:02:25.388020" level="INFO">Element '//img[@alt='Pozlovský občasník 2025/03']' is displayed.</msg>
+<arg>${ButtonZprava}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.331543" elapsed="0.056600"/>
+</kw>
+<kw name="Get Window Handles" owner="SeleniumLibrary">
+<msg time="2025-05-12T13:02:25.390203" level="INFO">${OldWindows} = ['76B0974A0F0152B1C2EC386D13CAE9A4']</msg>
+<var>${OldWindows}</var>
+<doc>Returns all child window handles of the selected browser as a list.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.388360" elapsed="0.001895"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-05-12T13:02:25.390842" level="INFO">Clicking element '//img[@alt='Pozlovský občasník 2025/03']'.</msg>
+<arg>${ButtonZprava}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.390549" elapsed="0.255105"/>
+</kw>
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Window Handle Should Change" owner="Keywords">
+<kw name="Get Window Handles" owner="SeleniumLibrary">
+<msg time="2025-05-12T13:02:25.661149" level="INFO">${CurrentWindows} = ['76B0974A0F0152B1C2EC386D13CAE9A4', 'AF96D1A3E389E40496EC4B41BE798570']</msg>
+<var>${CurrentWindows}</var>
+<doc>Returns all child window handles of the selected browser as a list.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.647572" elapsed="0.013674"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2025-05-12T13:02:25.661777" level="INFO">Length is 1.</msg>
+<msg time="2025-05-12T13:02:25.661920" level="INFO">${old_len} = 1</msg>
+<var>${old_len}</var>
+<arg>${OldWindows}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.661506" elapsed="0.000470"/>
+</kw>
+<kw name="Get Length" owner="BuiltIn">
+<msg time="2025-05-12T13:02:25.662360" level="INFO">Length is 2.</msg>
+<msg time="2025-05-12T13:02:25.662461" level="INFO">${new_len} = 2</msg>
+<var>${new_len}</var>
+<arg>${CurrentWindows}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.662180" elapsed="0.000316"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${new_len} &gt; ${old_len}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.662652" elapsed="0.000321"/>
+</kw>
+<arg>${OldWindows}</arg>
+<status status="PASS" start="2025-05-12T13:02:25.646979" elapsed="0.016110"/>
+</kw>
+<arg>10x</arg>
+<arg>1s</arg>
+<arg>Window Handle Should Change</arg>
+<arg>${OldWindows}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.646077" elapsed="0.017098"/>
+</kw>
+<kw name="Get Window Handles" owner="SeleniumLibrary">
+<msg time="2025-05-12T13:02:25.665238" level="INFO">${AllWindows} = ['76B0974A0F0152B1C2EC386D13CAE9A4', 'AF96D1A3E389E40496EC4B41BE798570']</msg>
+<var>${AllWindows}</var>
+<doc>Returns all child window handles of the selected browser as a list.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.663339" elapsed="0.001975"/>
+</kw>
+<kw name="Get New Window Handle" owner="Keywords">
+<for flavor="IN">
+<iter>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${handle}' not in ${OldHandles}</arg>
+<arg>Return From Keyword</arg>
+<arg>${handle}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.666784" elapsed="0.000413"/>
+</kw>
+<var name="${handle}">76B0974A0F0152B1C2EC386D13CAE9A4</var>
+<status status="PASS" start="2025-05-12T13:02:25.666537" elapsed="0.000778"/>
+</iter>
+<iter>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Return From Keyword" owner="BuiltIn">
+<msg time="2025-05-12T13:02:25.668252" level="INFO">Returning from the enclosing user keyword.</msg>
+<arg>${handle}</arg>
+<doc>Returns from the enclosing user keyword.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.668129" elapsed="0.000231"/>
+</kw>
+<arg>'${handle}' not in ${OldHandles}</arg>
+<arg>Return From Keyword</arg>
+<arg>${handle}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.667712" elapsed="0.000725"/>
+</kw>
+<var name="${handle}">AF96D1A3E389E40496EC4B41BE798570</var>
+<status status="PASS" start="2025-05-12T13:02:25.667516" elapsed="0.000981"/>
+</iter>
+<var>${handle}</var>
+<value>@{NewHandles}</value>
+<status status="PASS" start="2025-05-12T13:02:25.666235" elapsed="0.002327"/>
+</for>
+<msg time="2025-05-12T13:02:25.668778" level="INFO">${NewWindow} = AF96D1A3E389E40496EC4B41BE798570</msg>
+<var>${NewWindow}</var>
+<arg>${OldWindows}</arg>
+<arg>${AllWindows}</arg>
+<status status="PASS" start="2025-05-12T13:02:25.665732" elapsed="0.003094"/>
+</kw>
+<kw name="Switch Window" owner="SeleniumLibrary">
+<arg>${NewWindow}</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.668983" elapsed="0.051999"/>
+</kw>
+<kw name="Location Should Contain" owner="SeleniumLibrary">
+<msg time="2025-05-12T13:02:25.922224" level="INFO">Current location contains 'https://pozlovice.cz/soubory/newspaper/2025/03/jaro25-A4-web.pdf'.</msg>
+<arg>${StrankaZprava}</arg>
+<doc>Verifies that the current URL contains ``expected``.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.721330" elapsed="0.201080"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-05-12T13:02:25.922722" elapsed="2.313788"/>
+</kw>
+<arg>${Button_Zprava}</arg>
+<arg>${URL_Finish}</arg>
+<status status="PASS" start="2025-05-12T13:02:25.330661" elapsed="2.905985"/>
+</kw>
+<status status="PASS" start="2025-05-12T13:02:25.329523" elapsed="2.907393"/>
+</test>
+<test id="s1-t3" name="Post-conditions" line="17">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-05-12T13:02:28.237674" elapsed="0.000133"/>
+</kw>
+<status status="PASS" start="2025-05-12T13:02:28.237318" elapsed="0.000752"/>
+</test>
+<status status="PASS" start="2025-05-12T13:02:12.724552" elapsed="15.513932"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="TS 009" id="s1" pass="3" fail="0" skip="0">TS 009</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-05-12T13:02:13.011021" level="WARN">Imported resource file 'C:\Users\Daniel\Desktop\testování\Automatické\HlavniMenu_Navigace\019\Values.robot' is empty.</msg>
+<msg time="2025-05-12T13:02:13.011852" level="WARN">Imported resource file 'C:\Users\Daniel\Desktop\testování\Automatické\HlavniMenu_Navigace\019\Inputs.robot' is empty.</msg>
+<msg time="2025-05-12T13:02:13.016868" level="WARN">exexcutable_path is being deprecated. Please use service to configure the driver's executable_path as per documentation.</msg>
+</errors>
+</robot>

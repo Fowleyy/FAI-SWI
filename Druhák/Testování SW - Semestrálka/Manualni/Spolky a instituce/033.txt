@@ -1,0 +1,21 @@
+Testovací sada: 03
+Id -> 032
+Název -> Mateřská škola Pozlovice
+
+Stručný popis -> Ověření dostupnosti sekce „Mateřská škola Pozlovice“
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu kliknu na možnost „Spolky a instituce“.
+	2. V podnabídce kliknu na „Mateřská škola Pozlovice“.
+	3. Kliknu na web školky a zkontroluju, že se mi otevřel.
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Zobrazí se stránka s informacemi o mateřské škole v Pozlovicích.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

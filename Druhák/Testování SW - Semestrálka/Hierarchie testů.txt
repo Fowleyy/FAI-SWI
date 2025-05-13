@@ -1,0 +1,74 @@
+Testovací sada 01 - Hlavní menu a navigace
+	011 - Občan
+	012 - Spolky a instituce
+	013 - Turista a volný čas
+	014 - Ubytování a služby
+	015 - Rezervační systém
+	016 - Fotogalerie a videa
+	017 - Zobrazení aktuálních zpráv
+	018 - Přístup k úřední desce
+	019 - Přístup k Pozlovskému občasníku
+	0110 - Odkazy na „Sociální sítě
+
+Testovací sada 02 - Občan
+	021 - Aktuality
+	022 - Úřední deska
+	023 - Události týdne
+	024 - Akce a události
+	025 - Občasník
+	026 - Smuteční deska
+	027 - Úřad městyse Pozlovice
+	028 - Vyhlášky, nařízení, směrnice
+	029 - Rozpočet městyse
+	0210 - Územní plán
+	0211 - Veřejné zakázky
+	0212 - Povinné informace
+	0213 - Ochrana obyvatel
+	0214 - Ochrana osobních údajů
+	0215 - Místní poplatky
+	0216 - Služby městyse Pozlovice
+	0217 - Odpady
+	0218 - Kabelová televize, internet
+	0219 - Lékaři
+	0220 - Jízdní řády
+
+Testovací sada 03 - Spolky a instituce
+	031 - Místní knihovna
+	032 - Základní škola Pozlovice
+	033 - Mateřská škola Pozlovice
+	034 - Skauti Pozlovice
+	035 - Farnost Pozlovice
+	036 - SK Pozlovice
+
+Testovací sada 04 - Turista a volný čas
+	041 - Luhačovická přehrada
+	042 - Koupaliště DUHA
+	043 - Půjčovna lodiček
+	044 - Tipy na výlety
+	045 - Suvenýry
+	046 - Autovláček
+	047 - Sportoviště
+	048 - Turistické informační centrum
+
+Testovací sada 05 - Ubytování a služby
+	051 - Hotely
+	052 - Penziony a chaty
+	053 - Ubytování v soukromí
+	054 - Restaurace
+	055 - Potraviny
+	056 - Ostatní služby
+
+Testovací sada 06 - Fotogalerie a video
+	061 - Přístup k fotogalerii
+	062 - Zobrazení konkrétní fotogalerie
+	063 - Přístup k sekci „Videa“
+	064 - Zobrazení konkrétního videa
+	065 - Přístup na YouTube kanál Pozlovic
+
+Testovací sada 07 - Rezervační systém
+	071 - Registrace se špatným emailem
+	072 - Registrace s heslem bez čísla
+	073 - Registrace s neshodujícím se heslem
+	074 - Registrace se špatným telefonním číslem
+	075 - Registrace s nevyplněným jménem.
+	076 - Registrace s nevyplněným příjmením.

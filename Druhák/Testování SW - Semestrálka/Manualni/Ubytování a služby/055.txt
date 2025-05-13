@@ -1,0 +1,22 @@
+Testovací sada: 05
+Id -> 055
+Název -> Potraviny
+
+Stručný popis -> Ověření dostupnosti sekce „Potraviny“
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu kliknu na možnost „Ubytování a služby“.
+	2. V podnabídce kliknu na „Potraviny“.
+	3. Vyberu obchod a zkontroluju správný odkaz na přesměrování na jejich web.
+
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Zobrazí se stránka s informacemi o prodejnách potravin v Pozlovicích.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

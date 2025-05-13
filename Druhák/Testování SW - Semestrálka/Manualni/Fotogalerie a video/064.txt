@@ -1,0 +1,21 @@
+Testovací sada: 06
+Id -> 064
+Název -> Zobrazení konkrétního videa
+
+Stručný popis -> Ověření funkčnosti zobrazení konkrétního videa
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. Na stránce „Videa“ vyberu konkrétní video (např. „19. Košt slivovice a 16. ochutnávka medu z Luhačovského Zálesí“).
+	2. Kliknu na název nebo náhled videa.
+	3. Spustím video a zkontroluju, že se spustilo.
+	
+Vstupní data: název nebo náhled videa
+	
+Očekávaný výsledek -> Video se přehraje přímo na stránce nebo se otevře na YouTube kanálu Pozlovic.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

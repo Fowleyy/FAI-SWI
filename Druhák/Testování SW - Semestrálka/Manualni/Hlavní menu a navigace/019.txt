@@ -1,0 +1,22 @@
+Testovací sada: 01
+Id -> 019
+Název -> Přístup k Pozlovskému občasníku
+
+Stručný popis -> Ověření, že odkaz na „Pozlovský občasník“ vede na správnou stránku a umožňuje stažení aktuálního vydání
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. Na úvodní stránce najdu sekci „Pozlovský občasník“.
+	2. Ověřím, že se otevře stránka s archivem vydání „Pozlovského občasníku“.
+	3. Kliknu na odkaz aktuálního vydání (např. „2025/03“).
+	4. Ověřím, že se otevře PDF dokument s příslušným vydáním.
+	
+Vstupní data: Odkaz na aktuální vydání „Pozlovského občasníku“
+	
+Očekávaný výsledek -> PDF dokument se otevře v novém okně nebo se stáhne do zařízení uživatele.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

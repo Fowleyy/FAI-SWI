@@ -1,0 +1,21 @@
+Testovací sada: 04
+Id -> 045
+Název -> Suvenýry
+
+Stručný popis -> Ověření dostupnosti sekce „Suvenýry“
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu kliknu na možnost „Turista a volný čas“.
+	2. V podnabídce kliknu na „Suvenýry“.
+	3. Zkontroluju, že se mi načetla stránka, kde jsou ceny suvenýrů.
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Zobrazí se stránka s dostupnými suvenýry.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

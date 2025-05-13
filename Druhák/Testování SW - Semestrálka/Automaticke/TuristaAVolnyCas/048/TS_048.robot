@@ -1,0 +1,19 @@
+*** Settings ***
+Library  SeleniumLibrary  run_on_failure=Nothing
+Resource  Browsers.robot
+Resource  URLs.robot
+Resource  Buttons.robot
+Resource  Values.robot
+Resource  Inputs.robot
+Resource  Keywords.robot
+
+*** Test Cases ***
+Pre-conditions
+    Otevri Prohlizec Jdi na URL a Zkontroluj  ${Browser_Chrome}  ${URL_MainPage}  ${Button_Turista}
+
+Ověření dostupnosti sekce „Turistické informační centrum“
+    Kontroluj  ${Button_Turista}  ${URL_Finish}  ${Button_Info}  ${URL_Finish2}  ${Button_Cert}  ${URL_Finish3}
+
+Post-conditions
+    Close Browser
+

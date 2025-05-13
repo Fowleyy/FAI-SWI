@@ -1,0 +1,21 @@
+Testovací sada: 05
+Id -> 053
+Název -> Ubytování v soukromí
+
+Stručný popis -> Ověření dostupnosti sekce „Ubytování v soukromí“
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu kliknu na možnost „Ubytování a služby“.
+	2. V podnabídce kliknu na „Ubytování v soukromí“.
+	3. Vyberu nějakou nabídku a zkontroluju správné přesměrování na jejich web.
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Zobrazí se stránka s informacemi o ubytování v soukromí v Pozlovicích.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

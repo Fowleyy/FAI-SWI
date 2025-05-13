@@ -1,0 +1,21 @@
+Testovací sada: 04
+Id -> 042
+Název -> Koupaliště DUHA
+
+Stručný popis -> Ověření dostupnosti sekce „Koupaliště DUHA“
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu kliknu na možnost „Turista a volný čas“.
+	2. V podnabídce kliknu na „Koupaliště DUHA“.
+	3. Kliknu na odkaz "Parkovací ceník" a zkontroluju, že se mi otevřel ceník na parkování u koupaliště.
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Zobrazí se stránka s informacemi o koupališti DUHA.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

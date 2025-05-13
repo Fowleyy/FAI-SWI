@@ -1,0 +1,19 @@
+Testovací sada: 02
+Id -> 0215
+Název -> Místní poplatky
+
+Stručný popis -> Ověření dostupnosti sekce „Místní poplatky“
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V sekci "Potřebuji si vyřídit" kliknu na podsekci "Místní poplatky".
+	
+Vstupní data: sekce Občan
+	
+Očekávaný výsledek -> Zobrazí se stránka s informacemi o místních poplatcích.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

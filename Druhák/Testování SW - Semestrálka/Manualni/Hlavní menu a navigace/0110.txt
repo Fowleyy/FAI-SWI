@@ -1,0 +1,21 @@
+Testovací sada: 01
+Id -> 020
+Název -> Odkazy na „Sociální sítě“
+
+Stručný popis -> Ověření, že odkazy na sociální sítě vedou na oficiální profily městyse Pozlovice 
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. Na úvodní stránce najdu ikony sociálních sítí (Facebook, Instagram).
+	2. Vrátím se na úvodní stránku a kliknu na ikonu Instagramu.
+	3. Ověřím, že se otevře oficiální profil městyse Pozlovice na Instagramu.
+	
+Vstupní data: Odkazy na sociální sítě
+	
+Očekávaný výsledek -> Otevřou se oficiální profily městyse Pozlovice na příslušných sociálních sítích.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

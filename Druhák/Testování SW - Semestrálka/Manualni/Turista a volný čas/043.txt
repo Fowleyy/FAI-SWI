@@ -1,0 +1,21 @@
+Testovací sada: 04
+Id -> 043
+Název -> Půjčovna lodiček
+
+Stručný popis -> Ověření dostupnosti sekce „Půjčovna lodiček“
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu kliknu na možnost „Turista a volný čas“.
+	2. V podnabídce kliknu na „Půjčovna lodiček“.
+	3. Zkontroluju, že se mi správně otevřeli informace o půjčovně lodiček.
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Zobrazí se stránka s informacemi o půjčovně lodiček.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

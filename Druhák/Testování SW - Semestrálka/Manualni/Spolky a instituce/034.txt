@@ -1,0 +1,21 @@
+Testovací sada: 03
+Id -> 034
+Název -> Skauti Pozlovice
+
+Stručný popis -> Ověření dostupnosti sekce „Skauti Pozlovice“
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu kliknu na možnost „Spolky a instituce“.
+	2. V podnabídce kliknu na „Skauti pozlovice“.
+	3. Zkontroluju, že se mi otevřel web Skautů pozlovice.
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Zobrazí se stránka Skautů Pozlovice.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

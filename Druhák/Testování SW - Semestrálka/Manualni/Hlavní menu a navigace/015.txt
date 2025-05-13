@@ -1,0 +1,19 @@
+Testovací sada: 01
+Id -> 015
+Název -> Rezervační systém
+
+Stručný popis -> Ověření funkčnosti odkazu na sekci "Rezervační systém"
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. Kliknu na položku hlavního menu "Rezervační systém".
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Otevře se stránka s možností rezervace dostupných služeb nebo zařízení.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

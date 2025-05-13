@@ -1,0 +1,25 @@
+Testovací sada: 07
+Id -> 074
+Název -> Registrace se špatným telefonním číslem
+
+Stručný popis ->  Ověření kontroly proti zadání špatného telefonního čísla.
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu vyberu možnost "Rezervační systém"
+	2. V rezervačním systému kliknu na odkaz "https://pozlovice.rezervace.online".
+	3. Zkontroluju správné přesměrování.
+	4. Kliknu na tlačítko registrace.
+	5. Vyplním údaje, včetně záměrně chybného mailu.
+	6. Kliknu tlačítko registrovat.
+	7. Čekám na vyskočení hlášky o špatně zadaném formátu telefonního čísla.
+	
+Vstupní data: email, heslo, jméno, příjmení, telefonní číslo
+	
+Očekávaný výsledek -> Zobrazí se hláška o špatném formátu telefonního čísla.
+
+Post-condition -> 
+	1. Zavřu prohlížeč

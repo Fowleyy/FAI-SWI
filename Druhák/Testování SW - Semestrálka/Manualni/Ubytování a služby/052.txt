@@ -1,0 +1,21 @@
+Testovací sada: 05
+Id -> 052
+Název -> Penziony a chaty
+
+Stručný popis -> Ověření dostupnosti sekce „Penziony a chaty“
+
+Pre-conditions -> 
+	1. Stránka městyse je otevřená v prohlížeči Google Chrome na úvodní stránce.
+	2. Google Chrome je otevřený na počítači s operačním systémem Windows 11.
+
+Testovací kroky:
+	1. V hlavním menu kliknu na možnost „Ubytování a služby“.
+	2. V podnabídce kliknu na „Penziony a chaty“.
+	3. Vyberu penzion a zkontroluju správné přesměrování na jejich web.
+	
+Vstupní data: hlavní menu
+	
+Očekávaný výsledek -> Zobrazí se stránka s informacemi o penzionech a chatách v Pozlovicích.
+
+Post-condition -> 
+	1. Zavřu prohlížeč
