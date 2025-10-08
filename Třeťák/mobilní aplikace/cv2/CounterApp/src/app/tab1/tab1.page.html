@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 1
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 1</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-padding">
+    <ion-item>
+      <ion-input 
+        type="text" 
+        [(ngModel)]="itemName" 
+        placeholder="Zadejte název">
+      </ion-input>
+    </ion-item>
+
+    <h1 class="ion-text-center">{{ count }}</h1>
+    
+    <ion-button (click)="onIncrement()" expand="block" fill="solid" shape="round">
+      Click me
+    </ion-button>
+    <ion-button (click)="onReset()" expand="block" fill="outline" shape="round">
+      Reset
+    </ion-button>
+    <ion-button (click)="onSave()" expand="block" fill="solid" shape="round" color="success">
+      Save
+    </ion-button>
+
+
+  <ion-list class="ion-margin-top">
+      <ion-list-header>
+        <ion-label>Uložené položky</ion-label>
+      </ion-list-header>
+      
+      <ion-item *ngFor="let item of savedItems; let i = index">
+        <ion-label>
+          <h2>{{ item.name }}</h2>
+          <p>Hodnota: {{ item.value }}</p>
+        </ion-label>
+        <ion-button slot="end" fill="clear" color="danger" (click)="onDelete(i)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item *ngIf="savedItems.length === 0">
+        <ion-label class="ion-text-center">
+          <p>Zatím nejsou uložené žádné položky</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  
+
+</ion-content>

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "UTB.eshop.web/1.0.0": {
+        "runtime": {
+          "UTB.eshop.web.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "UTB.eshop.web/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
