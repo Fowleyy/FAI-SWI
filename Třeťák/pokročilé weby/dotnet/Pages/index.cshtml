@@ -1,0 +1,109 @@
+@page
+@model DOTNET.IndexModel
+@{
+    ViewData["Title"] = "Osobní kalendář";
+
+    int firstDayOfWeek = (int)new DateTime(Model.Year, Model.Month, 1).DayOfWeek;
+    if (firstDayOfWeek == 0) firstDayOfWeek = 7;
+    var nextMonth = Model.Month == 12 ? 1 : Model.Month + 1;
+    var nextYear = Model.Month == 12 ? Model.Year + 1 : Model.Year;
+    var prevMonth = Model.Month == 1 ? 12 : Model.Month - 1;
+    var prevYear = Model.Month == 1 ? Model.Year - 1 : Model.Year;
+}
+
+<div class="calendar-outer-wrap">
+    <h2 class="calendar-title">
+        <span class="calendar-icon">📅</span>
+        Osobní kalendář
+    </h2>
+
+    <div class="calendar-month-switch">
+        <a class="calendar-btn" asp-page="./Index" asp-route-year="@prevYear" asp-route-month="@prevMonth">&lt;</a>
+        <span class="calendar-month">@Model.MonthYearTitle</span>
+        <a class="calendar-btn" asp-page="./Index" asp-route-year="@nextYear" asp-route-month="@nextMonth">&gt;</a>
+    </div>
+
+    <div class="calendar-container">
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th>Po</th>
+                    <th>Út</th>
+                    <th>St</th>
+                    <th>Čt</th>
+                    <th>Pá</th>
+                    <th>So</th>
+                    <th>Ne</th>
+                </tr>
+            </thead>
+            <tbody>
+@{
+    int day = 1 - (firstDayOfWeek - 1);
+    while (day <= Model.DaysInMonth)
+    {
+        <tr>
+        @for (int d = 0; d < 7; d++)
+        {
+            if (day < 1 || day > Model.DaysInMonth)
+            {
+                <td class="calendar-cell calendar-empty"></td>
+            }
+            else
+            {
+                var eventsToday = Model.Events.Where(e => e.Date.Day == day).ToList();
+                bool hasEvents = eventsToday.Any();
+                bool isSelected = Model.SelectedDay.HasValue && Model.SelectedDay.Value == day;
+
+                <td class="calendar-cell@(hasEvents ? " calendar-has-event" : "")@(isSelected ? " calendar-selected-day" : "")">
+                    <div class="cell-number">
+                        <form method="get" asp-page="Index">
+                            <input type="hidden" name="year" value="@Model.Year" />
+                            <input type="hidden" name="month" value="@Model.Month" />
+                            <input type="hidden" name="selectedDay" value="@day" />
+                            <button type="submit" class="calendar-day-btn">@day</button>
+                        </form>
+                    </div>
+                    @if (hasEvents)
+                    {
+                        <div class="event-list">
+                            @foreach (var ev in eventsToday)
+                            {
+                                <div class="event-box">@ev.Title</div>
+                            }
+                        </div>
+                    }
+                </td>
+            }
+            day++;
+        }
+        </tr>
+    }
+}
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.SelectedDay.HasValue)
+    {
+        <div class="selected-events-box">
+            <h3>Akce pro den @Model.SelectedDay.Value. @Model.MonthYearTitle</h3>
+            @{
+                var selected = Model.SelectedDay.Value;
+                var events = Model.Events.Where(e => e.Date.Day == selected).ToList();
+            }
+            @if (events.Any())
+            {
+                <ul>
+                    @foreach (var ev in events)
+                    {
+                        <li>@ev.Title</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p><i>Žádná akce v tento den.</i></p>
+            }
+        </div>
+    }
+</div>

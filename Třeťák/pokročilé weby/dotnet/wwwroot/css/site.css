@@ -1,0 +1,150 @@
+.calendar-outer-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* zarovnání na střed */
+}
+
+.calendar-title {
+    display: flex;
+    align-items: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 2rem;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+.calendar-icon {
+    font-size: 2.2rem;
+    margin-right: 10px;
+}
+.calendar-controls {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.calendar-month {
+    font-weight: 400;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+.calendar-btn {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.16s;
+    text-decoration: none;
+}
+.calendar-btn:hover {
+    background: #1e40af;
+}
+
+.calendar-container {
+    background: #f8fbff;
+    padding: 18px 8px 10px 8px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #ddd4;
+    max-width: 950px;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.calendar-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px 14px;
+    table-layout: fixed;
+}
+.calendar-table th {
+    font-weight: 500;
+    color: #258;
+    text-align: center;
+    font-size: 1.1rem;
+    padding-bottom: 6px;
+}
+.calendar-cell {
+    background: #fff;
+    border: 2px solid #e4eaf6;
+    border-radius: 9px;
+    height: 60px;
+    vertical-align: top;
+    padding: 5px 4px 4px 6px;
+    min-width: 85px;
+    position: relative;
+    transition: border 0.17s;
+}
+.calendar-cell.calendar-has-event {
+    border: 2px solid #308ff4;
+    background: #eaf3fe;
+}
+.calendar-cell.calendar-empty {
+    background: #f1f5fa;
+    border: none;
+}
+.calendar-cell.calendar-selected-day {
+    border: 2.5px solid #fbc02d;
+    background: #fffde7;
+}
+.cell-number {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4873bc;
+    margin-bottom: 2px;
+}
+.event-list {
+    margin-top: 2px;
+}
+.event-box {
+    background: #e3ecfa;
+    border: 1.2px solid #89bcfd;
+    color: #236;
+    border-radius: 6px;
+    padding: 2px 7px 2px 6px;
+    font-size: 0.95rem;
+    margin: 3.5px 0 0 0;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.calendar-day-btn {
+    background: none;
+    border: none;
+    color: #4873bc;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0;
+}
+.calendar-day-btn:hover {
+    text-decoration: underline;
+    color: #2652b3;
+}
+.selected-events-box {
+    margin: 30px 0 12px 0;
+    padding: 18px 25px 12px 25px;
+    background: #f5faff;
+    border-radius: 7px;
+    max-width: 450px;
+    box-shadow: 0 0 4px #ced6e4;
+    font-size: 1.08rem;
+}
+
+.calendar-month-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: -6px;
+}
+
+.calendar-month {
+    font-weight: 500;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}

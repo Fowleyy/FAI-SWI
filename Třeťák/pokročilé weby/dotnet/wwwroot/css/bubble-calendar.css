@@ -1,0 +1,6 @@
+.bubble-calendar { border-collapse: collapse; }
+.bubble-calendar th, .bubble-calendar td { border: 1px solid #ccc; width: 40px; height: 40px; text-align: center; }
+.bubble-day.today { background: #ffeaac; }
+.bubble-day.has-events { border: 2px solid #3a6; }
+.bubble-dot { display: inline-block; width: 6px; height: 6px; background: #3a6; border-radius: 50%; margin-left: 2px; }
+.event-box { font-size: 11px; background: #eef; margin: 3px 0; padding: 2px; border-radius: 3px; }

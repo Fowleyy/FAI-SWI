@@ -1,0 +1,18 @@
+@page
+@model DOTNET.Pages.CreateModel
+
+<form method="post">
+    <label asp-for="Event.Title"></label>
+    <input asp-for="Event.Title" class="form-control" />
+
+    <label asp-for="Event.StartTime"></label>
+    <input asp-for="Event.StartTime" type="datetime-local" class="form-control" />
+
+    <label asp-for="Event.EndTime"></label>
+    <input asp-for="Event.EndTime" type="datetime-local" class="form-control" />
+
+    <label asp-for="Event.Description"></label>
+    <input asp-for="Event.Description" class="form-control" />
+
+    <button type="submit" class="btn btn-success">Přidat</button>
+</form>
