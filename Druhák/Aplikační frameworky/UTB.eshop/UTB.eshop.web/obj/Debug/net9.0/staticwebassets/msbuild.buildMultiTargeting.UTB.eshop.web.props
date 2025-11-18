@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\UTB.eshop.web.props" />
-</Project>
