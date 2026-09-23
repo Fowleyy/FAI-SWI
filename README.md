@@ -1,1 +1,2 @@
 Repo, kam dávám poznámky mého vysokoškolského studia. Repo nikdy nesmažu a někomu může posloužit. Enjoy
+Dost věcí může chybět skrz můj doom scrolling reelsek a podobně. Snažím se to aktualizovat, ale dokonalý student nejsem lol.
