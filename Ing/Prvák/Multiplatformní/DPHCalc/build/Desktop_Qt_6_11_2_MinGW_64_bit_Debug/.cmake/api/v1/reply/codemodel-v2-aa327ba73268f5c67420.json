@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-434219c09f7c17ae2059.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "DPHCalc",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "DPHCalc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-DPHCalc-Debug-d415ffcd5a89e4182c55.json",
+					"name" : "DPHCalc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "DPHCalc_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-DPHCalc_autogen-Debug-9b40be590c886866c136.json",
+					"name" : "DPHCalc_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "DPHCalc_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-DPHCalc_autogen_timestamp_deps-Debug-f1963308d1555fb2a902.json",
+					"name" : "DPHCalc_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Dan/Documents/DPHCalc/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug",
+		"source" : "C:/Users/Dan/Documents/DPHCalc"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
