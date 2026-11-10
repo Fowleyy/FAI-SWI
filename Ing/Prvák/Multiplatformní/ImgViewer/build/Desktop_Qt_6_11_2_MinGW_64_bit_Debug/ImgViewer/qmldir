@@ -1,0 +1,5 @@
+module ImgViewer
+typeinfo appImgViewer.qmltypes
+prefer :/ImgViewer/
+depends QtQuick
+

@@ -1,0 +1,223 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d37c8e22d7946e70b8ae.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "ImgViewer",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "all_aotstats::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_aotstats-Debug-fb195061129b1bc8ee31.json",
+					"name" : "all_aotstats",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint-Debug-d63aef85e6e010d384b3.json",
+					"name" : "all_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_json-Debug-7cd52dce08804c22f729.json",
+					"name" : "all_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_module-Debug-91e483519919ae44c55d.json",
+					"name" : "all_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmltyperegistrations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmltyperegistrations-Debug-6c4a9f7181cfff353620.json",
+					"name" : "all_qmltyperegistrations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appImgViewer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appImgViewer-Debug-4b07f942816e18620e23.json",
+					"name" : "appImgViewer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appImgViewer_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appImgViewer_autogen-Debug-d8d9273f1cb02dee9bbc.json",
+					"name" : "appImgViewer_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appImgViewer_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appImgViewer_autogen_timestamp_deps-Debug-923b96ad52d7291e7f18.json",
+					"name" : "appImgViewer_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appImgViewer_copy_qml::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appImgViewer_copy_qml-Debug-66707a4e7904e48f135f.json",
+					"name" : "appImgViewer_copy_qml",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appImgViewer_copy_res::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appImgViewer_copy_res-Debug-3e5e1223afd1d7190d47.json",
+					"name" : "appImgViewer_copy_res",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appImgViewer_qmlimportscan::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appImgViewer_qmlimportscan-Debug-6d0f283050dd5a37a3f3.json",
+					"name" : "appImgViewer_qmlimportscan",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appImgViewer_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appImgViewer_qmllint-Debug-fd9213e0b6d515d51495.json",
+					"name" : "appImgViewer_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appImgViewer_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appImgViewer_qmllint_json-Debug-60213d1cc8c59e9bb2d9.json",
+					"name" : "appImgViewer_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appImgViewer_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appImgViewer_qmllint_module-Debug-afb46b81562512c42155.json",
+					"name" : "appImgViewer_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appImgViewer_qmltyperegistration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appImgViewer_qmltyperegistration-Debug-b4e8c415a070c3cc9fb7.json",
+					"name" : "appImgViewer_qmltyperegistration",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "clean_qml_context_properties::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-clean_qml_context_properties-Debug-8bc20b3284868aa28e04.json",
+					"name" : "clean_qml_context_properties",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "dump_qml_context_properties::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dump_qml_context_properties-Debug-f179831c8431c32430ae.json",
+					"name" : "dump_qml_context_properties",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "generate_qmlls_build_ini_file::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-generate_qmlls_build_ini_file-Debug-37cab2a9829ee01fa7b9.json",
+					"name" : "generate_qmlls_build_ini_file",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "module_appImgViewer_aotstats_target::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-module_appImgViewer_aotstats_target-Debug-0637c4a8dd88404863c7.json",
+					"name" : "module_appImgViewer_aotstats_target",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Dan/Documents/ImgViewer/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug",
+		"source" : "C:/Users/Dan/Documents/ImgViewer"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

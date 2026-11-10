@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="img/settings.png">C:/Users/Dan/Documents/ImgViewer/img/settings.png</file>
+    <file alias="img/menu.png">C:/Users/Dan/Documents/ImgViewer/img/menu.png</file>
+    <file alias="img/image1.jpg">C:/Users/Dan/Documents/ImgViewer/img/image1.jpg</file>
+    <file alias="img/image2.jpg">C:/Users/Dan/Documents/ImgViewer/img/image2.jpg</file>
+    <file alias="img/image3.jpg">C:/Users/Dan/Documents/ImgViewer/img/image3.jpg</file>
+  </qresource>
+</RCC>
+

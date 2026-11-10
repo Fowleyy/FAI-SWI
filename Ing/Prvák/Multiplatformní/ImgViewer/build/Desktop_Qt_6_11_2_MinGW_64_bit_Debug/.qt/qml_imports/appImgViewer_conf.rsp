@@ -1,0 +1,15 @@
+-rootPath
+C:/Users/Dan/Documents/ImgViewer
+-cmake-output
+-output-file
+C:/Users/Dan/Documents/ImgViewer/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/.qt/qml_imports/appImgViewer_conf.cmake
+-importPath
+C:/Users/Dan/Documents/ImgViewer/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug
+-importPath
+C:/Users/Dan/Documents/ImgViewer/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/ImgViewer
+-importPath
+C:/Qt/6.11.2/mingw_64/qml
+-qrcFiles
+C:/Users/Dan/Documents/ImgViewer/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/.qt/rcc/qmake_ImgViewer.qrc
+C:/Users/Dan/Documents/ImgViewer/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/.qt/rcc/appImgViewer_raw_qml_0.qrc
+C:/Users/Dan/Documents/ImgViewer/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/.qt/rcc/Images.qrc

@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/ImgViewer">
+    <file alias="qmldir">C:/Users/Dan/Documents/ImgViewer/build/Desktop_Qt_6_11_2_MinGW_64_bit_Debug/ImgViewer/qmldir</file>
+  </qresource>
+</RCC>
+

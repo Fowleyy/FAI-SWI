@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/ImgViewer/">
+    <file alias="main.qml">C:/Users/Dan/Documents/ImgViewer/main.qml</file>
+  </qresource>
+</RCC>
+
